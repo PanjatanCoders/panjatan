@@ -1,0 +1,87 @@
+/* General Body and Layout */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8; /* Light blue-gray background */
+    color: #334155; /* Darker text */
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Card Styles */
+.card {
+    background-color: #ffffff;
+    border-radius: 0.75rem; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.button-primary {
+    background-color: #3b82f6; /* Blue */
+    color: #ffffff;
+}
+.button-primary:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+.button-secondary {
+    background-color: #e2e8f0; /* Light gray */
+    color: #334155;
+}
+.button-secondary:hover {
+    background-color: #cbd5e1; /* Darker gray on hover */
+}
+
+/* Styles for the To-Do List */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+.todo-item:last-child {
+    border-bottom: none;
+}
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: #64748b;
+}
+.todo-item input[type="checkbox"] {
+    margin-right: 0.75rem;
+    transform: scale(1.2); /* Slightly larger checkbox */
+}
+.todo-item button {
+    background: none;
+    border: none;
+    color: #ef4444; /* Red for delete */
+    cursor: pointer;
+    font-size: 1.25rem; /* Larger icon */
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease;
+}
+.todo-item button:hover {
+    background-color: #fee2e2; /* Light red background on hover */
+}
+.todo-input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.todo-input-group input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+}

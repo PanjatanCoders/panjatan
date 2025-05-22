@@ -3,218 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png" type="image/x-icon">
     <title>Test Practice Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Light blue-gray background */
-            color: #334155; /* Darker text */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 0.75rem; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .button {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .button-primary {
-            background-color: #3b82f6; /* Blue */
-            color: #ffffff;
-        }
-        .button-primary:hover {
-            background-color: #2563eb; /* Darker blue on hover */
-        }
-        .button-secondary {
-            background-color: #e2e8f0; /* Light gray */
-            color: #334155;
-        }
-        .button-secondary:hover {
-            background-color: #cbd5e1; /* Darker gray on hover */
-        }
-    </style>
 </head>
 <body class="antialiased">
-    <header class="bg-blue-600 text-white p-4 shadow-md">
-        <div class="container flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Test Practice Hub</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="#automation" class="hover:underline">Automation Practice</a></li>
-                    <li><a href="#manual" class="hover:underline">Manual Testing</a></li>
-                    <li><a href="#resources" class="hover:underline">Resources</a></li>
-                    <li><a href="#contact" class="hover:underline">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container py-8">
-        <section id="hero" class="text-center mb-12">
-            <h2 class="text-5xl font-extrabold text-blue-800 mb-4">Welcome to Your Testing Playground!</h2>
-            <p class="text-xl text-gray-700 mb-6">
-                Practice automation and manual testing skills with interactive exercises and real-world scenarios.
-            </p>
-            <a href="#automation" class="button button-primary text-lg">Start Practicing Automation</a>
-            <a href="#manual" class="button button-secondary text-lg ml-4">Start Practicing Manual</a>
-        </section>
-
-        <section id="automation" class="card">
-            <h3 class="text-3xl font-semibold text-blue-700 mb-4">Automation Testing Practice</h3>
-            <p class="text-gray-600 mb-4">
-                Here you can find various automation challenges. Click on an exercise to begin.
-            </p>
-            <div id="automation-exercises" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
-        </section>
-
-        <section id="manual" class="card">
-            <h3 class="text-3xl font-semibold text-blue-700 mb-4">Manual Testing Scenarios</h3>
-            <p class="text-gray-600 mb-4">
-                Explore different manual testing scenarios and learn to identify bugs and usability issues.
-            </p>
-            <div id="manual-scenarios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
-        </section>
-
-        <section id="resources" class="card">
-            <h3 class="text-3xl font-semibold text-blue-700 mb-4">Learning Resources</h3>
-            <p class="text-gray-600 mb-4">
-                Enhance your knowledge with these curated resources for testing.
-            </p>
-            <ul class="list-disc list-inside text-gray-600">
-                <li><a href="#" class="text-blue-500 hover:underline">Introduction to Selenium</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline">API Testing with Postman</a></li>
-                <li><a href="#" class="text-blue-500 hover:underline">Exploratory Testing Guide</a></li>
+<header class="bg-blue-600 text-white p-4 shadow-md">
+    <div class="container flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Test Practice Hub</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#automation" class="hover:underline">Automation Practice</a></li>
+                <li><a href="#manual" class="hover:underline">Manual Testing</a></li>
+                <li><a href="#interactive-scenarios" class="hover:underline">Interactive Scenarios</a></li>
+                <li><a href="#resources" class="hover:underline">Resources</a></li>
+                <li><a href="#contact" class="hover:underline">Contact</a></li>
             </ul>
-        </section>
+        </nav>
+    </div>
+</header>
 
-        <section id="contact" class="card">
-            <h3 class="text-3xl font-semibold text-blue-700 mb-4">Contact Us</h3>
-            <p class="text-gray-600 mb-4">
-                Have questions or suggestions? Reach out to us!
-            </p>
-            <form class="space-y-4">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
-                </div>
-                <button type="submit" class="button button-primary">Send Message</button>
-            </form>
-        </section>
-    </main>
+<main class="container py-8">
+    <section id="hero" class="text-center mb-12">
+        <h2 class="text-5xl font-extrabold text-blue-800 mb-4">Welcome to Your Testing Playground!</h2>
+        <p class="text-xl text-gray-700 mb-6">
+            Practice automation and manual testing skills with interactive exercises and real-world scenarios.
+        </p>
+        <a href="#automation" class="button button-primary text-lg">Start Practicing Automation</a>
+        <a href="#manual" class="button button-secondary text-lg ml-4">Start Practicing Manual</a>
+    </section>
 
-    <footer class="bg-gray-800 text-white p-4 text-center mt-8">
-        <div class="container">
-            <p>&copy; 2025 Test Practice Hub. All rights reserved.</p>
+    <section id="automation" class="card">
+        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Automation Testing Practice</h3>
+        <p class="text-gray-600 mb-4">
+            Here you can find various automation challenges. Click on an exercise to begin.
+        </p>
+        <div id="automation-exercises" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
-    </footer>
+    </section>
 
-    <script>
-        // JavaScript for dynamic content and interactivity
-        document.addEventListener('DOMContentLoaded', () => {
-            const automationExercisesDiv = document.getElementById('automation-exercises');
-            const manualScenariosDiv = document.getElementById('manual-scenarios');
+    <section id="manual" class="card">
+        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Manual Testing Scenarios</h3>
+        <p class="text-gray-600 mb-4">
+            Explore different manual testing scenarios and learn to identify bugs and usability issues.
+        </p>
+        <div id="manual-scenarios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+    </section>
 
-            // --- Function to fetch and display dynamic content ---
-            async function fetchAndDisplayContent(targetElement, type) {
-                // In a real application, you would fetch this data from a backend API
-                // For this example, we'll use a simple array of objects
-                let data = [];
-                if (type === 'automation') {
-                    data = [
-                        { id: 1, title: 'Login Form Validation', description: 'Automate testing of a login form with various inputs.' },
-                        { id: 2, title: 'E-commerce Product Search', description: 'Test product search functionality on an e-commerce page.' },
-                        { id: 3, title: 'Dynamic Table Interaction', description: 'Automate interactions with a table that loads data dynamically.' },
-                        { id: 4, title: 'API Endpoint Testing', description: 'Simulate API calls and validate responses.' }
-                    ];
-                } else if (type === 'manual') {
-                    data = [
-                        { id: 101, title: 'E-commerce Checkout Flow', description: 'Manually test the entire checkout process, including edge cases.' },
-                        { id: 102, title: 'Social Media Post Creation', description: 'Test creating, editing, and deleting posts on a social media platform.' },
-                        { id: 103, title: 'User Profile Management', description: 'Verify user profile updates, password changes, and privacy settings.' }
-                    ];
-                }
+    <section id="interactive-scenarios" class="card">
+        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Interactive Testing Scenarios</h3>
+        <p class="text-gray-600 mb-4">
+            Engage with these dynamic components to practice both automation and manual testing.
+        </p>
 
-                if (data.length > 0) {
-                    data.forEach(item => {
-                        const card = document.createElement('div');
-                        card.classList.add('card', 'hover:shadow-lg', 'transition-shadow', 'duration-300'); // Add hover effect
-                        card.innerHTML = `
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">${item.title}</h4>
-                            <p class="text-gray-600 mb-4">${item.description}</p>
-                            <button class="button button-primary text-sm">Start Exercise</button>
-                        `;
-                        targetElement.appendChild(card);
+        <div class="mt-6 p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <h4 class="text-2xl font-semibold text-gray-800 mb-4">To-Do List Application</h4>
+            <p class="text-gray-600 mb-4">
+                Test adding, completing, and deleting tasks. Pay attention to edge cases like empty inputs, very long tasks, and task persistence (though this example won't persist across page loads).
+            </p>
+            <div class="todo-input-group">
+                <input type="text" id="new-todo-input" placeholder="Add a new task..." class="focus:ring-blue-500 focus:border-blue-500">
+                <button id="add-todo-button" class="button button-primary">Add Task</button>
+            </div>
+            <ul id="todo-list" class="divide-y divide-gray-200">
+            </ul>
+            <p id="todo-message" class="text-sm text-gray-500 mt-4 hidden">No tasks yet!</p>
+        </div>
+    </section>
 
-                        // Add event listener to the button (example of interactivity)
-                        card.querySelector('button').addEventListener('click', () => {
-                            alert(`Starting ${item.title} (${type} practice)!`); // Using alert for simplicity, consider a modal
-                            // In a real app, this would navigate to a detailed exercise page
-                        });
-                    });
-                } else {
-                    targetElement.innerHTML = `<p class="text-gray-500">No ${type} exercises available yet. Check back soon!</p>`;
-                }
-            }
+    <section id="resources" class="card">
+        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Learning Resources</h3>
+        <p class="text-gray-600 mb-4">
+            Enhance your knowledge with these curated resources for testing.
+        </p>
+        <ul class="list-disc list-inside text-gray-600">
+            <li><a href="#" class="text-blue-500 hover:underline">Introduction to Selenium</a></li>
+            <li><a href="#" class="text-blue-500 hover:underline">API Testing with Postman</a></li>
+            <li><a href="#" class="text-blue-500 hover:underline">Exploratory Testing Guide</a></li>
+        </ul>
+    </section>
 
-            // Call the function to load content when the page loads
-            fetchAndDisplayContent(automationExercisesDiv, 'automation');
-            fetchAndDisplayContent(manualScenariosDiv, 'manual');
+    <section id="contact" class="card">
+        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Contact Us</h3>
+        <p class="text-gray-600 mb-4">
+            Have questions or suggestions? Reach out to us!
+        </p>
+        <form class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+            </div>
+            <button type="submit" class="button button-primary">Send Message</button>
+        </form>
+    </section>
+</main>
 
-            // --- Example of form submission handling (client-side) ---
-            const contactForm = document.querySelector('#contact form');
-            contactForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission
+<footer class="bg-gray-800 text-white p-4 text-center mt-8">
+    <div class="container">
+        <p>&copy; 2025 Test Practice Hub. All rights reserved.</p>
+    </div>
+</footer>
 
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-
-                // Basic validation
-                if (!name || !email || !message) {
-                    alert('Please fill in all fields.');
-                    return;
-                }
-
-                // In a real application, you would send this data to a backend server
-                console.log('Form Submitted:', { name, email, message });
-                alert('Thank you for your message! We will get back to you shortly.'); // Using alert for simplicity
-                contactForm.reset(); // Clear the form
-            });
-
-            // --- Smooth scrolling for navigation links ---
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
