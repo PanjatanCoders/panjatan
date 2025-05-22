@@ -26,6 +26,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const todoList = document.getElementById('todo-list');
     const todoMessage = document.getElementById('todo-message');
 
+    // Login Form Elements
+    const loginForm = document.getElementById('login-form');
+    const loginEmailInput = document.getElementById('login-email');
+    const loginPasswordInput = document.getElementById('login-password');
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+    const loginMessage = document.getElementById('login-message');
+
+    // --- Helper function to display/hide error messages ---
+    function showError(element, message) {
+        element.textContent = message;
+        element.classList.remove('hidden');
+    }
+
+    function hideError(element) {
+        element.textContent = '';
+        element.classList.add('hidden');
+    }
+
     // --- Function to fetch and display dynamic content ---
     async function fetchAndDisplayContent() {
         // In a real deployment, you would fetch from a data.json file like this:
@@ -167,6 +186,54 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render of todos (empty list)
     renderTodos();
 
+    // --- Login Form Validation Logic ---
+    loginForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        // Clear previous errors and messages
+        hideError(emailError);
+        hideError(passwordError);
+        hideError(loginMessage);
+        loginMessage.classList.remove('text-green-500', 'text-red-500');
+
+        const email = loginEmailInput.value.trim();
+        const password = loginPasswordInput.value.trim();
+        let isValid = true;
+
+        // Email validation
+        if (email === '') {
+            showError(emailError, 'Email address is required.');
+            isValid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showError(emailError, 'Please enter a valid email address.');
+            isValid = false;
+        }
+
+        // Password validation
+        if (password === '') {
+            showError(passwordError, 'Password is required.');
+            isValid = false;
+        } else if (password.length < 8) {
+            showError(passwordError, 'Password must be at least 8 characters long.');
+            isValid = false;
+        }
+
+        // If all validations pass, simulate login
+        if (isValid) {
+            // Simulate API call for login
+            // For demonstration, valid credentials are: email: test@example.com, password: password123
+            if (email === 'test@example.com' && password === 'password123') {
+                loginMessage.textContent = 'Login successful! Welcome!';
+                loginMessage.classList.add('text-green-500');
+                loginMessage.classList.remove('hidden');
+                loginForm.reset(); // Clear form on success
+            } else {
+                loginMessage.textContent = 'Invalid email or password.';
+                loginMessage.classList.add('text-red-500');
+                loginMessage.classList.remove('hidden');
+            }
+        }
+    });
 
     // --- Example of form submission handling (client-side) ---
     const contactForm = document.querySelector('#contact form');
