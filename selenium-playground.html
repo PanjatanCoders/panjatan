@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <title>Selenium Playground</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+<header class="bg-blue-600 text-white p-4 shadow-md">
+    <div class="container flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Selenium Playground</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:underline">Back to Home</a></li>
+                <li><a href="table.html" class="hover:underline">Container Data</a></li>
+                <li><a href="selenium-playground.html" class="hover:underline font-semibold underline">Selenium Playground</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container py-8">
+    <section class="card">
+        <h2 class="text-3xl font-semibold text-blue-700 mb-4">Selenium Testing Practice Page</h2>
+        <p class="text-gray-600 mb-6">
+            Use this page to practice all major Selenium WebDriver actions: input, dropdowns, alerts, window/iframe, drag & drop, and more.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- SendKeys and Auto-populate -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">SendKeys & Auto-populate</h3>
+                <input type="text" id="input-sendkeys" class="w-full p-2 border rounded mb-2" placeholder="Type here...">
+                <button id="auto-populate-btn" class="button button-primary mb-2">Auto Populate</button>
+                <p id="auto-populate-result" class="text-green-700"></p>
+            </div>
+            <!-- Dropdown -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Dropdown</h3>
+                <select id="dropdown-example" class="w-full p-2 border rounded">
+                    <option value="">Select an option</option>
+                    <option value="option1">Option One</option>
+                    <option value="option2">Option Two</option>
+                    <option value="option3">Option Three</option>
+                </select>
+            </div>
+            <!-- Alert/Prompt/Confirm -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Alert, Confirm, Prompt</h3>
+                <div class="flex gap-2 mb-2">
+                    <button id="alert-btn" class="button button-primary">Show Alert</button>
+                    <button id="confirm-btn" class="button button-secondary">Show Confirm</button>
+                    <button id="prompt-btn" class="button button-primary">Show Prompt</button>
+                </div>
+                <p id="alert-result" class="text-blue-700"></p>
+            </div>
+            <!-- Window Handle -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Window Handle</h3>
+                <button id="open-window-btn" class="button button-primary mb-2">Open New Window</button>
+                <p class="text-gray-600">Use Selenium to switch between windows.</p>
+            </div>
+            <!-- Iframe Switch -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Iframe Switch</h3>
+                <iframe id="test-iframe" srcdoc="<p style='color:blue;'>This is an iframe. Try switching to it!</p>" class="w-full h-24 border rounded"></iframe>
+            </div>
+            <!-- Textarea -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Textarea</h3>
+                <textarea id="textarea-example" rows="4" class="w-full p-2 border rounded" placeholder="Type your notes here..."></textarea>
+            </div>
+            <!-- Drag and Drop -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Drag and Drop</h3>
+                <div class="flex gap-4">
+                    <div id="drag-source" draggable="true" class="p-4 bg-blue-200 rounded cursor-move">Drag me</div>
+                    <div id="drop-target" class="p-4 bg-gray-200 rounded min-w-[100px]">Drop here</div>
+                </div>
+                <p id="drag-result" class="text-green-700 mt-2"></p>
+            </div>
+            <!-- Snackbar/Toaster -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Snackbar / Toaster</h3>
+                <button id="show-snackbar-btn" class="button button-primary">Show Snackbar</button>
+                <div id="snackbar" class="fixed left-1/2 bottom-8 transform -translate-x-1/2 bg-blue-700 text-white px-6 py-3 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">This is a snackbar message!</div>
+            </div>
+            <!-- Enable/Disable Elements -->
+            <div class="p-6 bg-gray-50 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-2">Enable / Disable Elements</h3>
+                <button id="toggle-disable-btn" class="button button-secondary mb-2">Toggle Input Disabled</button>
+                <input type="text" id="toggle-input" class="w-full p-2 border rounded" placeholder="I can be disabled!">
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-gray-800 text-white p-4 text-center mt-8">
+    <div class="container">
+        <p>&copy; 2025 Test Practice Hub. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Auto-populate
+    document.getElementById('auto-populate-btn').onclick = function() {
+        document.getElementById('input-sendkeys').value = 'Auto-filled by script';
+        document.getElementById('auto-populate-result').textContent = 'Input auto-populated!';
+        setTimeout(() => document.getElementById('auto-populate-result').textContent = '', 2000);
+    };
+
+    // Alert/Confirm/Prompt
+    document.getElementById('alert-btn').onclick = function() {
+        alert('This is a simple alert!');
+        document.getElementById('alert-result').textContent = 'Alert was shown.';
+    };
+    document.getElementById('confirm-btn').onclick = function() {
+        const res = confirm('Do you confirm this?');
+        document.getElementById('alert-result').textContent = 'Confirm result: ' + res;
+    };
+    document.getElementById('prompt-btn').onclick = function() {
+        const res = prompt('Enter something:');
+        document.getElementById('alert-result').textContent = 'Prompt result: ' + res;
+    };
+
+    // Window handle
+    document.getElementById('open-window-btn').onclick = function() {
+        window.open('https://www.example.com', '_blank', 'width=400,height=300');
+    };
+
+    // Drag and Drop
+    const dragSource = document.getElementById('drag-source');
+    const dropTarget = document.getElementById('drop-target');
+    dragSource.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', 'dragged');
+    });
+    dropTarget.addEventListener('dragover', e => {
+        e.preventDefault();
+    });
+    dropTarget.addEventListener('drop', e => {
+        e.preventDefault();
+        dropTarget.textContent = 'Dropped!';
+        document.getElementById('drag-result').textContent = 'Drag and drop successful!';
+        setTimeout(() => {
+            dropTarget.textContent = 'Drop here';
+            document.getElementById('drag-result').textContent = '';
+        }, 2000);
+    });
+
+    // Snackbar/Toaster
+    document.getElementById('show-snackbar-btn').onclick = function() {
+        const snackbar = document.getElementById('snackbar');
+        snackbar.classList.remove('opacity-0', 'pointer-events-none');
+        snackbar.classList.add('opacity-100');
+        setTimeout(() => {
+            snackbar.classList.remove('opacity-100');
+            snackbar.classList.add('opacity-0', 'pointer-events-none');
+        }, 2000);
+    };
+
+    // Enable/Disable
+    document.getElementById('toggle-disable-btn').onclick = function() {
+        const input = document.getElementById('toggle-input');
+        input.disabled = !input.disabled;
+    };
+</script>
+</body>
+</html>
