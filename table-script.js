@@ -76,36 +76,46 @@ CONT050,Jakarta,Singapore,Pending,2024-05-20,18000,36,Indonesia Trade,Asia Shipp
     let sortColumn = '';
     let sortDirection = ''; // 'asc' or 'desc'
 
-    // --- Data Parsing Function ---
-    function parseCSV(csv) {
-        const lines = csv.trim().split('\n');
-        const headers = lines[0].split(',').map(header => {
-            // Convert header names to camelCase for easier property access
-            return header.trim()
-                         .replace(/ \(.*\)/, '') // Remove units like (kg)
-                         .replace(/\s(.)/g, (match, p1) => p1.toUpperCase()) // Convert space+char to uppercase char
-                         .replace(/\s/g, ''); // Remove remaining spaces
-        });
-
-        const data = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',');
-            if (values.length === headers.length) {
-                const row = {};
-                headers.forEach((header, index) => {
-                    let value = values[index].trim();
-                    // Convert numeric values to numbers
-                    if (header === 'weightKg' || header === 'volumeM3' || header === 'valueUSD') {
-                        row[header] = parseFloat(value);
-                    } else {
-                        row[header] = value;
-                    }
-                });
-                data.push(row);
-            }
-        }
-        return data;
+    function toCamelCase(str) {
+        str = str.trim();
+        str = str.replace(/\(kg\)/i, 'Kg');
+        str = str.replace(/\(m3\)/i, 'M3');
+        str = str.replace(/\(usd\)/i, 'USD');
+        // Split by space, lowercase first word, capitalize first letter of next words
+        return str
+            .split(/\s+/)
+            .map((word, i) => {
+                if (i === 0) return word.toLowerCase();
+                if (word.toUpperCase() === 'ID') return 'Id';
+                if (word.toUpperCase() === 'USD') return 'USD';
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            })
+            .join('');
     }
+
+    // --- Data Parsing Function ---
+     function parseCSV(csv) {
+         const lines = csv.trim().split('\n');
+         const headers = lines[0].split(',').map(header => toCamelCase(header.trim()));
+
+         const data = [];
+         for (let i = 1; i < lines.length; i++) {
+             const values = lines[i].split(',').map(value => value.trim());
+             if (values.length === headers.length) {
+                 const row = {};
+                 headers.forEach((header, index) => {
+                     let value = values[index];
+                     if (header === 'weightKg' || header === 'volumeM3' || header === 'valueUSD') {
+                         row[header] = parseFloat(value);
+                     } else {
+                         row[header] = value;
+                     }
+                 });
+                 data.push(row);
+             }
+         }
+         return data;
+     }
 
     // --- Filtering, Sorting, and Pagination Logic ---
     function applyFiltersAndSort() {
@@ -115,9 +125,13 @@ CONT050,Jakarta,Singapore,Pending,2024-05-20,18000,36,Indonesia Trade,Asia Shipp
         if (searchTerm) {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
             data = data.filter(row =>
-                row.containerId.toLowerCase().includes(lowerCaseSearchTerm) ||
-                row.originPort.toLowerCase().includes(lowerCaseSearchTerm) ||
-                row.destinationPort.toLowerCase().includes(lowerCaseSearchTerm)
+                // Check if any of the relevant string columns include the search term
+                (row.containerId && row.containerId.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (row.originPort && row.originPort.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (row.destinationPort && row.destinationPort.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (row.status && row.status.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (row.shipper && row.shipper.toLowerCase().includes(lowerCaseSearchTerm)) ||
+                (row.consignee && row.consignee.toLowerCase().includes(lowerCaseSearchTerm))
             );
         }
 
@@ -132,13 +146,26 @@ CONT050,Jakarta,Singapore,Pending,2024-05-20,18000,36,Indonesia Trade,Asia Shipp
                 const aValue = a[sortColumn];
                 const bValue = b[sortColumn];
 
+                // Handle null/undefined values for sorting
+                if (aValue === undefined || aValue === null) return sortDirection === 'asc' ? 1 : -1;
+                if (bValue === undefined || bValue === null) return sortDirection === 'asc' ? -1 : 1;
+
+
                 if (typeof aValue === 'string' && typeof bValue === 'string') {
-                    // Case-insensitive string comparison
+                    // Special handling for date strings if needed, otherwise localeCompare is fine
+                    if (sortColumn === 'shipmentDate') {
+                        const dateA = new Date(aValue);
+                        const dateB = new Date(bValue);
+                        if (dateA < dateB) return sortDirection === 'asc' ? -1 : 1;
+                        if (dateA > dateB) return sortDirection === 'asc' ? 1 : -1;
+                        return 0;
+                    }
+                    // Case-insensitive string comparison for other strings
                     return sortDirection === 'asc' ?
                         aValue.localeCompare(bValue) :
                         bValue.localeCompare(aValue);
                 } else {
-                    // Numeric or date comparison
+                    // Numeric comparison
                     if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
                     if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
                     return 0;
@@ -159,17 +186,21 @@ CONT050,Jakarta,Singapore,Pending,2024-05-20,18000,36,Indonesia Trade,Asia Shipp
         const paginatedData = filteredAndSortedData.slice(start, end);
 
         if (paginatedData.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-gray-500">No records found.</td></tr>`;
+            tableBody.innerHTML = `<tr><td colspan="10" class="text-center py-4 text-gray-500">No records found.</td></tr>`;
         } else {
             paginatedData.forEach(row => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="whitespace-nowrap">${row.containerId}</td>
-                    <td>${row.originPort}</td>
-                    <td>${row.destinationPort}</td>
-                    <td>${row.status}</td>
-                    <td>${row.shipmentDate}</td>
-                    <td>${row.weightKg}</td>
+                    <td class="whitespace-nowrap">${row.containerId || ''}</td>
+                    <td>${row.originPort || ''}</td>
+                    <td>${row.destinationPort || ''}</td>
+                    <td>${row.status || ''}</td>
+                    <td>${row.shipmentDate || ''}</td>
+                    <td>${row.weightKg !== undefined && row.weightKg !== null ? row.weightKg : ''}</td>
+                    <td>${row.volumeM3 !== undefined && row.volumeM3 !== null ? row.volumeM3 : ''}</td>
+                    <td>${row.shipper || ''}</td>
+                    <td>${row.consignee || ''}</td>
+                    <td>${row.valueUSD !== undefined && row.valueUSD !== null ? row.valueUSD : ''}</td>
                 `;
                 tableBody.appendChild(tr);
             });
