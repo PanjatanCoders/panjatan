@@ -221,6 +221,80 @@ CONT050,Jakarta,Singapore,Pending,2024-05-20,18000,36,Indonesia Trade,Asia Shipp
         });
     }
 
+    // Helper to convert data to CSV
+    function dataToCSV(data) {
+        if (!data.length) return '';
+        const headers = Object.keys(data[0]);
+        const csvRows = [
+            headers.join(','), // header row
+            ...data.map(row => headers.map(h => `"${(row[h] ?? '').toString().replace(/"/g, '""')}"`).join(','))
+        ];
+        return csvRows.join('\r\n');
+    }
+
+    // Helper to convert data to TXT (tab-separated)
+    function dataToTXT(data) {
+        if (!data.length) return '';
+        const headers = Object.keys(data[0]);
+        const txtRows = [
+            headers.join('\t'),
+            ...data.map(row => headers.map(h => (row[h] ?? '')).join('\t'))
+        ];
+        return txtRows.join('\r\n');
+    }
+
+    // Helper to convert data to HTML table for Excel
+    function dataToExcelHTML(data) {
+        if (!data.length) return '';
+        const headers = Object.keys(data[0]);
+        let html = '<table><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
+        data.forEach(row => {
+            html += '<tr>' + headers.map(h => `<td>${row[h] ?? ''}</td>`).join('') + '</tr>';
+        });
+        html += '</table>';
+        return html;
+    }
+
+    // Download helper
+    function downloadFile(content, filename, mimeType) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 0);
+    }
+
+    // Event listeners for download buttons
+    document.getElementById('download-csv').addEventListener('click', () => {
+        const csv = dataToCSV(filteredAndSortedData);
+        downloadFile(csv, 'shipment-report.csv', 'text/csv');
+    });
+
+    document.getElementById('download-txt').addEventListener('click', () => {
+        const txt = dataToTXT(filteredAndSortedData);
+        downloadFile(txt, 'shipment-report.txt', 'text/plain');
+    });
+
+    document.getElementById('download-excel').addEventListener('click', () => {
+        const html = dataToExcelHTML(filteredAndSortedData);
+        const excelContent = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                  xmlns:x="urn:schemas-microsoft-com:office:excel"
+                  xmlns="http://www.w3.org/TR/REC-html40">
+            <head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+            <x:Name>Sheet1</x:Name>
+            <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet>
+            </x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>
+            <body>${html}</body></html>`;
+        downloadFile(excelContent, 'shipment-report.xls', 'application/vnd.ms-excel');
+    });
+
     // --- Event Listeners ---
 
     // Search input
