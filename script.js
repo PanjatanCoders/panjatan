@@ -5,7 +5,8 @@ const simulatedApiData = {
     "automationExercises": [
         { id: 1, title: 'Login Form Validation', description: 'Automate testing of a login form with various inputs (valid, invalid, empty).', type: 'automation' },
         { id: 2, title: 'E-commerce Product Search', description: 'Test product search functionality, including filtering and sorting.', type: 'automation' },
-        { id: 3, title: 'Dynamic Table Interaction', description: 'Automate interactions with a table that loads data dynamically and allows pagination.', type: 'automation' },
+        // IMPORTANT: Added 'link: "table.html"' here to enable navigation
+        { id: 3, title: 'Dynamic Table Interaction', description: 'Automate interactions with a table that loads data dynamically and allows pagination.', type: 'automation', link: 'table.html' },
         { id: 4, title: 'API Endpoint Testing', description: 'Simulate API calls and validate responses for a mock REST API.', type: 'automation' },
         { id: 5, title: 'Drag and Drop Element', description: 'Automate testing of a drag-and-drop interface.', type: 'automation' }
     ],
@@ -60,19 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
             data.automationExercises.forEach(item => {
                 const card = document.createElement('div');
                 card.classList.add('card', 'hover:shadow-lg', 'transition-shadow', 'duration-300');
+                // MODIFIED: Check for 'link' property to render an <a> tag instead of a <button>
                 card.innerHTML = `
                     <h4 class="text-xl font-semibold text-gray-800 mb-2">${item.title}</h4>
                     <p class="text-gray-600 mb-4">${item.description}</p>
-                    <button class="button button-primary text-sm">Start Exercise</button>
+                    ${item.link ? `<a href="${item.link}" class="button button-primary text-sm">Start Exercise</a>` : `<button class="button button-primary text-sm">Start Exercise</button>`}
                 `;
                 automationExercisesDiv.appendChild(card);
 
-                card.querySelector('button').addEventListener('click', () => {
-                    // Using a simple alert for demonstration.
-                    // In a real app, this would navigate to a detailed exercise page
-                    // or load the interactive component directly.
-                    alert(`Starting Automation Exercise: ${item.title}!`);
-                });
+                // Add event listener only if there's no direct link (i.e., it's a button)
+                if (!item.link) {
+                    card.querySelector('button').addEventListener('click', () => {
+                        alert(`Starting Automation Exercise: ${item.title}!`);
+                    });
+                }
             });
         } else {
             automationExercisesDiv.innerHTML = `<p class="text-gray-500">No automation exercises available yet. Check back soon!</p>`;

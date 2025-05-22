@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon.png" type="image/x-icon">
+    <title>Container Shipment Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+<header class="bg-blue-600 text-white p-4 shadow-md">
+    <div class="container flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Container Shipment Data</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:underline">Back to Home</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container py-8">
+    <section class="card">
+        <h2 class="text-3xl font-semibold text-blue-700 mb-4">Interactive Container Shipment Data</h2>
+        <p class="text-gray-600 mb-6">
+            Explore, search, filter, sort, and paginate through container shipment records. This is an excellent scenario for practicing data manipulation and UI interaction with automation tools.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-6 p-4 bg-gray-50 rounded-lg shadow-sm">
+            <div class="flex-grow">
+                <label for="search-input" class="sr-only">Search</label>
+                <input type="text" id="search-input" placeholder="Search by Container ID or Port..."
+                       class="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div>
+                <label for="status-filter" class="block text-sm font-medium text-gray-700">Status:</label>
+                <select id="status-filter"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">All</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Delayed">Delayed</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="rows-per-page" class="block text-sm font-medium text-gray-700">Records per page:</label>
+                <select id="rows-per-page"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+
+            <div>
+                <button id="clear-filters-button" class="button button-secondary mt-4 md:mt-0">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th data-column="containerId">Container ID <span class="sort-icon"></span></th>
+                    <th data-column="originPort">Origin Port <span class="sort-icon"></span></th>
+                    <th data-column="destinationPort">Destination Port <span class="sort-icon"></span></th>
+                    <th data-column="status">Status <span class="sort-icon"></span></th>
+                    <th data-column="shipmentDate">Shipment Date <span class="sort-icon"></span></th>
+                    <th data-column="weightKg">Weight (kg) <span class="sort-icon"></span></th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+            <button id="prev-page-button" class="button button-secondary" disabled>Previous</button>
+            <span id="page-info" class="text-gray-700">Page 1 of 1</span>
+            <button id="next-page-button" class="button button-secondary" disabled>Next</button>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-gray-800 text-white p-4 text-center mt-8">
+    <div class="container">
+        <p>&copy; 2025 Test Practice Hub. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="table-script.js"></script>
+</body>
+</html>

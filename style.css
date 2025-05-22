@@ -117,3 +117,52 @@ body {
 .text-green-500 {
     color: #22c55e;
 }
+
+/* Table Specific Styles */
+.table-container {
+    overflow-x: auto; /* Ensures table is scrollable on small screens */
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Ensure table doesn't get too narrow */
+}
+.data-table th, .data-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+.data-table th {
+    background-color: #f8fafc; /* Light background for headers */
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer; /* Indicate sortable headers */
+    position: relative;
+}
+.data-table th:hover {
+    background-color: #f1f5f9;
+}
+.data-table th .sort-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #94a3b8;
+}
+.data-table th.asc .sort-icon::after {
+    content: ' ▲';
+    color: #3b82f6;
+}
+.data-table th.desc .sort-icon::after {
+    content: ' ▼';
+    color: #3b82f6;
+}
+.data-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
