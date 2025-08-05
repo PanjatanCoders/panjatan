@@ -619,6 +619,7 @@ function setupAdvancedFeatures() {
             alert(`Context menu action: ${this.textContent}`);
         });
     });
+    setupAutocomplete();
 }
 
 // Infinite Scroll
@@ -706,3 +707,120 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Autocomplete functionality
+function setupAutocomplete() {
+    const input = document.getElementById('autocompleteInput');
+    const list = document.getElementById('autocompleteList');
+    const selectedValue = document.getElementById('selectedValue');
+    const selectedText = document.getElementById('selectedText');
+    
+    // Sample data for autocomplete
+    const suggestions = [
+        'JavaScript', 'Python', 'Java', 'C++', 'C#', 'PHP', 'Ruby', 'Go', 'Swift', 'Kotlin',
+        'React', 'Angular', 'Vue.js', 'Node.js', 'Express.js', 'Django', 'Flask', 'Laravel',
+        'Selenium', 'Cypress', 'Playwright', 'TestCafe', 'Jest', 'Mocha', 'JUnit', 'PyTest',
+        'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'Material-UI', 'Ant Design',
+        'Git', 'GitHub', 'GitLab', 'Bitbucket', 'Docker', 'Kubernetes', 'AWS', 'Azure',
+        'MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Firebase',
+        'REST API', 'GraphQL', 'WebSocket', 'JWT', 'OAuth', 'OAuth2'
+    ];
+    
+    let currentFocus = -1;
+    let filteredSuggestions = [];
+    
+    input.addEventListener('input', function() {
+        const value = this.value.toLowerCase();
+        filteredSuggestions = suggestions.filter(item => 
+            item.toLowerCase().includes(value)
+        );
+        
+        if (value.length === 0) {
+            hideAutocompleteList();
+            return;
+        }
+        
+        showAutocompleteList();
+        renderSuggestions();
+    });
+    
+    input.addEventListener('keydown', function(e) {
+        const items = list.querySelectorAll('.autocomplete-item');
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            currentFocus++;
+            if (currentFocus >= items.length) currentFocus = 0;
+            setActive(items);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            currentFocus--;
+            if (currentFocus < 0) currentFocus = items.length - 1;
+            setActive(items);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (currentFocus > -1 && items[currentFocus]) {
+                items[currentFocus].click();
+            }
+        } else if (e.key === 'Escape') {
+            hideAutocompleteList();
+        }
+    });
+    
+    input.addEventListener('blur', function() {
+        // Delay hiding to allow for clicks on suggestions
+        setTimeout(() => {
+            hideAutocompleteList();
+        }, 200);
+    });
+    
+    function showAutocompleteList() {
+        list.style.display = 'block';
+    }
+    
+    function hideAutocompleteList() {
+        list.style.display = 'none';
+        currentFocus = -1;
+    }
+    
+    function renderSuggestions() {
+        list.innerHTML = '';
+        
+        if (filteredSuggestions.length === 0) {
+            list.innerHTML = '<div class="autocomplete-item">No suggestions found</div>';
+            return;
+        }
+        
+        filteredSuggestions.forEach((suggestion, index) => {
+            const item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = suggestion;
+            
+            item.addEventListener('click', function() {
+                input.value = suggestion;
+                selectedText.textContent = suggestion;
+                selectedValue.style.display = 'block';
+                hideAutocompleteList();
+                
+                // Show success message
+                showAlert('buttonAlert', `Selected: ${suggestion}`, 'success');
+            });
+            
+            item.addEventListener('mouseenter', function() {
+                currentFocus = index;
+                setActive(list.querySelectorAll('.autocomplete-item'));
+            });
+            
+            list.appendChild(item);
+        });
+    }
+    
+    function setActive(items) {
+        items.forEach((item, index) => {
+            item.classList.remove('highlighted');
+            if (index === currentFocus) {
+                item.classList.add('highlighted');
+            }
+        });
+    }
+}

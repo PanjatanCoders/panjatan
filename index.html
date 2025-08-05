@@ -181,6 +181,17 @@
                         <button id="modalBtn" class="btn">Show Modal</button>
                         <div id="alertResult" style="margin-top: 1rem;"></div>
                     </div>
+                    <div class="test-item">
+                        <h3>Autocomplete Input</h3>
+                        <div class="autocomplete-container">
+                            <input type="text" id="autocompleteInput" class="form-control" 
+                                   placeholder="Start typing to search..." autocomplete="off">
+                            <div id="autocompleteList" class="autocomplete-list"></div>
+                        </div>
+                        <div id="selectedValue" style="margin-top: 1rem; padding: 0.5rem; background: #e8f0fe; border-radius: 4px; display: none;">
+                            <strong>Selected:</strong> <span id="selectedText"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Data Table -->
