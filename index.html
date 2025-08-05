@@ -1,142 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icon.png" type="image/x-icon">
-    <title>Test Practice Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Complete Selenium Practice Hub</title>
+    <link rel="stylesheet" href="stylem.css">
 </head>
-<body class="antialiased">
-<header class="bg-blue-600 text-white p-4 shadow-md">
-    <div class="container flex justify-between items-center">
-        <h1 class="text-3xl font-bold">Test Practice Hub</h1>
-        <nav>
-            <ul class="flex space-x-4">
-                <li><a href="#automation" class="hover:underline">Automation Practice</a></li>
-                <li><a class="hover:underline" href="selenium-playground.html">Selenium Playground</a></li>
-                <li><a href="#resources" class="hover:underline">Resources</a></li>
-                <li><a href="#contact" class="hover:underline">Contact</a></li>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Selenium Practice Hub</div>
+            <ul class="nav-links">
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#elements">Elements</a></li>
+                <li><a href="#interactions">Interactions</a></li>
+                <li><a href="#shadow-dom">Shadow DOM</a></li>
+                <li><a href="#advanced">Advanced</a></li>
+                <li><a href="table.html">Web Table</a></li>
             </ul>
         </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Complete Selenium Testing Playground</h1>
+                <p>Master automation testing with real-world scenarios and interactive elements</p>
+                <a href="#forms" class="btn">Start Practicing</a>
+            </div>
+        </section>
+
+        <!-- Form Testing Section -->
+        <section id="forms" class="section">
+            <div class="container">
+                <h2>📝 Form Testing & Input Validation</h2>
+
+                <div class="test-grid">
+                    <!-- Login Form -->
+                    <div class="test-item">
+                        <h3>Login Form</h3>
+                        <p>Please enter your username and password to login.</p>
+                        <div class="credentials-info">
+                            <div class="credential-item">
+                                <span class="credential-label">Username:</span>
+                                <span class="credential-value">admin</span>
+                            </div>
+                            <div class="credential-item">
+                                <span class="credential-label">Password:</span>
+                                <span class="credential-value">password</span>
+                            </div>
+                        </div>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" id="username" name="username" class="form-control"
+                                    placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="password" class="form-control"
+                                    placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+                        <div id="loginAlert" class="alert"></div>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <div class="test-item">
+                        <h3>Registration Form</h3>
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country:</label>
+                                <select id="country" name="country" class="form-control">
+                                    <option value="">Select Country</option>
+                                    <option value="us">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="au">Australia</option>
+                                    <option value="in">India</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="male" name="gender" value="male">
+                                        <label for="male">Male</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="female" name="gender" value="female">
+                                        <label for="female">Female</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="other" name="gender" value="other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="interests">Interests:</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="coding" name="interests" value="coding">
+                                        <label for="coding">Coding</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="testing" name="interests" value="testing">
+                                        <label for="testing">Testing</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="design" name="interests" value="design">
+                                        <label for="design">Design</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio:</label>
+                                <textarea id="bio" name="bio" class="form-control" rows="3"
+                                    placeholder="Tell us about yourself"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Elements Section -->
+        <section id="elements" class="section">
+            <div class="container">
+                <h2>🎯 Interactive Elements & Controls</h2>
+
+                <div class="test-grid">
+                    <!-- Button Interactions -->
+                    <div class="test-item">
+                        <h3>Button Interactions</h3>
+                        <button id="clickBtn" class="btn">Click Me</button>
+                        <button id="doubleClickBtn" class="btn btn-secondary">Double Click</button>
+                        <button id="rightClickBtn" class="btn btn-danger">Right Click</button>
+                        <button id="disabledBtn" class="btn" disabled>Disabled Button</button>
+                        <button id="toggleBtn" class="btn">Enable/Disable</button>
+                        <div id="buttonAlert" class="alert"></div>
+                    </div>
+
+                    <!-- Dynamic Content -->
+                    <div class="test-item">
+                        <h3>Dynamic Content Loading</h3>
+                        <button id="loadContentBtn" class="btn">Load Content</button>
+                        <button id="hideContentBtn" class="btn btn-secondary">Hide Content</button>
+                        <div id="dynamicContent"
+                            style="display: none; margin-top: 1rem; padding: 1rem; background: #e8f0fe; border-radius: 8px;">
+                            <p>This content was loaded dynamically!</p>
+                            <p id="timestamp"></p>
+                        </div>
+                        <div id="loadingSpinner" class="loading" style="display: none;"></div>
+                    </div>
+
+                    <!-- Alerts and Popups -->
+                    <div class="test-item">
+                        <h3>Alerts & Popups</h3>
+                        <button id="alertBtn" class="btn">Show Alert</button>
+                        <button id="confirmBtn" class="btn btn-secondary">Show Confirm</button>
+                        <button id="promptBtn" class="btn btn-danger">Show Prompt</button>
+                        <button id="modalBtn" class="btn">Show Modal</button>
+                        <div id="alertResult" style="margin-top: 1rem;"></div>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div class="test-item" style="margin-top: 2rem;">
+                    <h3>Dynamic Data Table</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <button id="addRowBtn" class="btn">Add Row</button>
+                        <button id="deleteRowBtn" class="btn btn-danger">Delete Selected</button>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search table..."
+                            style="width: 200px; display: inline-block; margin-left: 1rem;">
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAll"></th>
+                                    <th data-sort="name">Name ↕</th>
+                                    <th data-sort="email">Email ↕</th>
+                                    <th data-sort="role">Role ↕</th>
+                                    <th data-sort="status">Status ↕</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td><input type="checkbox" class="row-select"></td>
+                                    <td>Priya Sharma</td>
+                                    <td>priya.sharma@example.com</td>
+                                    <td>Admin</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
+                                        <button class="btn btn-danger delete-btn"
+                                            style="padding: 5px 10px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-select"></td>
+                                    <td>Rajesh Kumar</td>
+                                    <td>rajesh.kumar@example.com</td>
+                                    <td>User</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
+                                        <button class="btn btn-danger delete-btn"
+                                            style="padding: 5px 10px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-select"></td>
+                                    <td>Anjali Patel</td>
+                                    <td>anjali.patel@example.com</td>
+                                    <td>Manager</td>
+                                    <td><span class="status inactive">Inactive</span></td>
+                                    <td>
+                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
+                                        <button class="btn btn-danger delete-btn"
+                                            style="padding: 5px 10px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-select"></td>
+                                    <td>Arun Singh</td>
+                                    <td>arun.singh@example.com</td>
+                                    <td>User</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
+                                        <button class="btn btn-danger delete-btn"
+                                            style="padding: 5px 10px;">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-select"></td>
+                                    <td>Meera Reddy</td>
+                                    <td>meera.reddy@example.com</td>
+                                    <td>Developer</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
+                                        <button class="btn btn-danger delete-btn"
+                                            style="padding: 5px 10px;">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drag and Drop Section -->
+        <section id="interactions" class="section">
+            <div class="container">
+                <h2>🎨 Drag & Drop and Advanced Interactions</h2>
+
+                <div class="test-item">
+                    <h3>Drag and Drop Interface</h3>
+                    <div class="drag-container">
+                        <div class="drag-source">
+                            <h4>Drag Items From Here</h4>
+                            <div class="draggable-item" draggable="true" data-value="item1">Item 1</div>
+                            <div class="draggable-item" draggable="true" data-value="item2">Item 2</div>
+                            <div class="draggable-item" draggable="true" data-value="item3">Item 3</div>
+                            <div class="draggable-item" draggable="true" data-value="item4">Item 4</div>
+                        </div>
+                        <div class="drop-zone" id="dropZone">
+                            <h4>Drop Items Here</h4>
+                            <div id="droppedItems"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-grid">
+                    <!-- File Upload -->
+                    <div class="test-item">
+                        <h3>File Upload</h3>
+                        <div class="file-upload" id="fileUpload">
+                            <p>📁 Click or drag files here to upload</p>
+                            <input type="file" id="fileInput" multiple style="display: none;">
+                        </div>
+                        <div id="fileList" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <!-- Slider and Range -->
+                    <div class="test-item">
+                        <h3>Sliders & Range Controls</h3>
+                        <div class="form-group">
+                            <label for="volumeSlider">Volume: <span id="volumeValue">50</span></label>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateInput">Date:</label>
+                            <input type="date" id="dateInput" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="colorInput">Color:</label>
+                            <input type="color" id="colorInput" class="form-control" value="#667eea">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shadow DOM Section -->
+        <section id="shadow-dom" class="section">
+            <div class="container">
+                <h2>🌟 Shadow DOM Testing</h2>
+                <p>Practice accessing elements within Shadow DOM - a common challenge in modern web applications.</p>
+
+                <div class="test-grid">
+                    <!-- Simple Shadow DOM -->
+                    <div class="test-item">
+                        <h3>Simple Shadow DOM</h3>
+                        <div id="simpleShadowHost" class="shadow-host">
+                            <p>This content is outside the shadow DOM</p>
+                        </div>
+                    </div>
+
+                    <!-- Nested Shadow DOM -->
+                    <div class="test-item">
+                        <h3>Nested Shadow DOM</h3>
+                        <div id="nestedShadowHost" class="shadow-host">
+                            <p>This content is outside the nested shadow DOM</p>
+                        </div>
+                    </div>
+
+                    <!-- Shadow DOM with Form -->
+                    <div class="test-item">
+                        <h3>Shadow DOM Form</h3>
+                        <div id="shadowFormHost" class="shadow-host">
+                            <p>Shadow DOM form will be created here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Testing Section -->
+        <section id="advanced" class="section">
+            <div class="container">
+                <h2>🚀 Advanced Testing Scenarios</h2>
+
+                <div class="test-grid">
+                    <!-- Iframe Testing -->
+                    <div class="test-item">
+                        <h3>Iframe Interaction</h3>
+                        <div class="iframe-container">
+                            <iframe id="testIframe"
+                                src="data:text/html,<html><body style='font-family: Arial; padding: 20px;'><h2>Iframe Content</h2><button onclick='alert(\"
+                                Hello from iframe!\")'>Click me in iframe</button><input type='text'
+                                    placeholder='Type in iframe'
+                                    style='padding: 10px; margin: 10px; border: 1px solid #ccc;'>
+</body>
+
+</html>"
+width="100%" height="200" style="border: none;"></iframe>
+</div>
+</div>
+
+<!-- Multiple Windows -->
+<div class="test-item">
+    <h3>Window Handling</h3>
+    <button id="openWindowBtn" class="btn">Open New Window</button>
+    <button id="openTabBtn" class="btn btn-secondary">Open New Tab</button>
+    <div id="windowInfo" style="margin-top: 1rem;"></div>
+</div>
+
+<!-- AJAX Loading -->
+<div class="test-item">
+    <h3>AJAX & Asynchronous Loading</h3>
+    <button id="ajaxBtn" class="btn">Load Data via AJAX</button>
+    <div id="ajaxResult" style="margin-top: 1rem;"></div>
+    <div id="ajaxLoading" class="loading" style="display: none;"></div>
+</div>
+
+<!-- Context Menu -->
+<div class="test-item">
+    <h3>Context Menu</h3>
+    <div id="contextArea" style="background: #f0f8ff; padding: 2rem; border-radius: 8px; cursor: pointer;">
+        Right-click here for custom context menu
     </div>
-</header>
+    <div id="contextMenu"
+        style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;">
+        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Copy</div>
+        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Paste</div>
+        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Delete</div>
+    </div>
+</div>
+</div>
 
-<main class="container py-8">
-    <section id="hero" class="text-center mb-12">
-        <h2 class="text-5xl font-extrabold text-blue-800 mb-4">Welcome to Your Testing Playground!</h2>
-        <p class="text-xl text-gray-700 mb-6">
-            Practice automation and manual testing skills with interactive exercises and real-world scenarios.
-        </p>
-        <a href="#automation" class="button button-primary text-lg">Start Practicing Automation</a>
-        <a href="#manual" class="button button-secondary text-lg ml-4">Start Practicing Manual</a>
-    </section>
-
-    <section id="automation" class="card">
-        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Automation Testing Practice</h3>
-        <p class="text-gray-600 mb-4">
-            Here you can find various automation challenges. Click on an exercise to begin.
-        </p>
-        <div id="automation-exercises" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Infinite Scroll -->
+<div class="test-item" style="margin-top: 2rem;">
+    <h3>Infinite Scroll</h3>
+    <div id="scrollContainer"
+        style="height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 1rem;">
+        <div id="scrollContent">
+            <!-- Content will be dynamically added -->
         </div>
-    </section>
-
-    <section id="manual" class="card">
-        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Manual Testing Scenarios</h3>
-        <p class="text-gray-600 mb-4">
-            Explore different manual testing scenarios and learn to identify bugs and usability issues.
-        </p>
-        <div id="manual-scenarios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        </div>
-    </section>
-
-    <section id="interactive-scenarios" class="card">
-        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Interactive Testing Scenarios</h3>
-        <p class="text-gray-600 mb-4">
-            Engage with these dynamic components to practice both automation and manual testing.
-        </p>
-
-        <div class="mt-6 p-6 border border-gray-200 rounded-lg bg-gray-50">
-            <h4 class="text-2xl font-semibold text-gray-800 mb-4">To-Do List Application</h4>
-            <p class="text-gray-600 mb-4">
-                Test adding, completing, and deleting tasks. Pay attention to edge cases like empty inputs, very long tasks, and task persistence (though this example won't persist across page loads).
-            </p>
-            <div class="todo-input-group">
-                <input type="text" id="new-todo-input" placeholder="Add a new task..." class="focus:ring-blue-500 focus:border-blue-500">
-                <button id="add-todo-button" class="button button-primary">Add Task</button>
-            </div>
-            <ul id="todo-list" class="divide-y divide-gray-200">
-            </ul>
-            <p id="todo-message" class="text-sm text-gray-500 mt-4 hidden">No tasks yet!</p>
-        </div>
-
-        <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
-            <h4 class="text-2xl font-semibold text-gray-800 mb-4">Login Form Validation</h4>
-            <p class="text-gray-600 mb-4">
-                Practice testing a login form. Try valid and invalid inputs for email and password.
-                <br>
-                <span class="font-semibold">Valid credentials:</span> email: `test@example.com`, password: `password123`
-            </p>
-            <form id="login-form" class="space-y-4">
-                <div>
-                    <label for="login-email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="login-email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="your@example.com">
-                    <p id="email-error" class="text-red-500 text-sm mt-1 hidden"></p>
-                </div>
-                <div>
-                    <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="login-password" name="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" placeholder="********">
-                    <p id="password-error" class="text-red-500 text-sm mt-1 hidden"></p>
-                </div>
-                <button type="submit" class="button button-primary w-full">Log In</button>
-                <p id="login-message" class="text-center text-sm mt-4 hidden"></p>
-            </form>
-        </div>
-    </section>
-
-    <section id="resources" class="card">
-        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Learning Resources</h3>
-        <p class="text-gray-600 mb-4">
-            Enhance your knowledge with these curated resources for testing.
-        </p>
-        <ul class="list-disc list-inside text-gray-600">
-            <li><a href="#" class="text-blue-500 hover:underline">Introduction to Selenium</a></li>
-            <li><a href="#" class="text-blue-500 hover:underline">API Testing with Postman</a></li>
-            <li><a href="#" class="text-blue-500 hover:underline">Exploratory Testing Guide</a></li>
-        </ul>
-    </section>
-
-    <section id="contact" class="card">
-        <h3 class="text-3xl font-semibold text-blue-700 mb-4">Contact Us</h3>
-        <p class="text-gray-600 mb-4">
-            Have questions or suggestions? Reach out to us!
-        </p>
-        <form class="space-y-4">
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-            </div>
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-            </div>
-            <div>
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
-            </div>
-            <button type="submit" class="button button-primary">Send Message</button>
-        </form>
-    </section>
+        <div id="scrollLoading" class="loading" style="display: none; text-align: center; margin: 1rem;"></div>
+    </div>
+</div>
+</div>
+</section>
 </main>
-
-<footer class="bg-gray-800 text-white p-4 text-center mt-8">
+<!-- Footer -->
+<footer class="footer">
     <div class="container">
-        <p>&copy; 2025 Test Practice Hub. All rights reserved.</p>
+        <div class="footer-content">
+            <!-- Company Information -->
+            <div class="footer-section">
+                <h3>Panjatan Testing Platform</h3>
+                <p>A comprehensive web testing and automation playground for developers and QA engineers.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#forms">Forms Testing</a></li>
+                    <li><a href="#elements">Interactive Elements</a></li>
+                    <li><a href="#advanced">Advanced Scenarios</a></li>
+                    <li><a href="#tables">Data Tables</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h4>Contact Details</h4>
+                <div class="contact-info">
+                    <p>📧 Email: panjatan.tech@gmail.com</p>
+                    <p>📱 Phone: +91 70304 00093</p>
+                    <p>🏠Address: Pune, Maharashtra, India</p>
+                    <p>⏰ Support: Mon-Fri 9:00 AM - 6:00 PM IST</p>
+                </div>
+            </div>
+
+            <!-- Technical Information -->
+            <div class="footer-section">
+                <h4>Technical Info</h4>
+                <div class="tech-info">
+                    <p>🔧 Built with: HTML5, CSS3, JavaScript</p>
+                    <p>🎯 Purpose: Web Testing & Automation</p>
+                    <p>📊 Version: 1.0.0</p>
+                    <p>🔧 Last Updated: December 2024</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; 2025 Panjatan Testing Platform. All rights reserved.</p>
+                </div>
+                <div class="maintained-by">
+                    <p>Maintained by: <strong>Panjatan Development Team</strong></p>
+                </div>
+                <div class="footer-legal">
+                    <a href="#" class="legal-link">Privacy Policy</a>
+                    <a href="#" class="legal-link">Terms of Service</a>
+                    <a href="#" class="legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
-
-<script src="script.js"></script>
+<!-- Modal -->
+<div id="testModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h3>Test Modal</h3>
+        <p>This is a modal dialog for testing purposes.</p>
+        <button class="btn">Modal Button</button>
+    </div>
+</div>
+<script src="scriptm.js"></script>
 </body>
+
 </html>
