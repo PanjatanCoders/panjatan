@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icon.png" type="image/x-icon">
-    <title>Complete Selenium Practice Hub</title>
+    <title>Complete Playwright & Selenium Practice Hub</title>
     <link rel="stylesheet" href="stylem.css">
 </head>
-
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Selenium Practice Hub</div>
+            <div class="logo" data-testid="site-logo">Selenium Practice Hub</div>
             <ul class="nav-links">
-                <li><a href="#forms">Forms</a></li>
-                <li><a href="#elements">Elements</a></li>
-                <li><a href="#interactions">Interactions</a></li>
-                <li><a href="#shadow-dom">Shadow DOM</a></li>
-                <li><a href="#advanced">Advanced</a></li>
-                <li><a href="table.html">Web Table</a></li>
+                <li><a href="#forms" data-testid="nav-forms">Forms</a></li>
+                <li><a href="#elements" data-testid="nav-elements">Elements</a></li>
+                <li><a href="#interactions" data-testid="nav-interactions">Interactions</a></li>
+                <li><a href="#modern" data-testid="nav-modern">Modern UI</a></li>
+                <li><a href="#shadow-dom" data-testid="nav-shadow">Shadow DOM</a></li>
+                <li><a href="#advanced" data-testid="nav-advanced">Advanced</a></li>
+                <li><a href="#test-cases" data-testid="nav-testcases">Test Cases</a></li>
+                <li><a href="table.html" data-testid="nav-table">Web Table</a></li>
             </ul>
         </nav>
     </header>
@@ -27,105 +27,131 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Complete Selenium Testing Playground</h1>
+                <h1>Complete Playwright &amp; Selenium Testing Playground</h1>
                 <p>Master automation testing with real-world scenarios and interactive elements</p>
-                <a href="#forms" class="btn">Start Practicing</a>
+                <a href="#forms" class="btn" data-testid="hero-start-btn">Start Practicing</a>
             </div>
         </section>
 
-        <!-- Form Testing Section -->
+        <!-- ===== FORMS SECTION ===== -->
         <section id="forms" class="section">
             <div class="container">
-                <h2>📝 Form Testing & Input Validation</h2>
-
+                <h2>📝 Form Testing &amp; Input Validation</h2>
                 <div class="test-grid">
+
                     <!-- Login Form -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="login-form-card">
                         <h3>Login Form</h3>
                         <p>Please enter your username and password to login.</p>
                         <div class="credentials-info">
                             <div class="credential-item">
                                 <span class="credential-label">Username:</span>
-                                <span class="credential-value">admin</span>
+                                <span class="credential-value" data-testid="hint-username">admin</span>
                             </div>
                             <div class="credential-item">
                                 <span class="credential-label">Password:</span>
-                                <span class="credential-value">password</span>
+                                <span class="credential-value" data-testid="hint-password">password</span>
                             </div>
                         </div>
-                        <form id="loginForm">
+                        <form id="loginForm" data-testid="login-form" novalidate>
                             <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input type="text" id="username" name="username" class="form-control"
-                                    placeholder="Enter username">
+                                    placeholder="Enter username"
+                                    data-testid="username-input"
+                                    aria-label="Username"
+                                    aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
                                 <input type="password" id="password" name="password" class="form-control"
-                                    placeholder="Enter password">
+                                    placeholder="Enter password"
+                                    data-testid="password-input"
+                                    aria-label="Password"
+                                    aria-required="true">
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="remember" name="remember">
-                                <label for="remember">Remember me</label>
+                            <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="remember" name="remember"
+                                    data-testid="remember-checkbox"
+                                    aria-label="Remember me">
+                                <label for="remember" style="margin: 0;">Remember me</label>
                             </div>
-                            <button type="submit" class="btn">Login</button>
+                            <button type="submit" class="btn" data-testid="login-submit-btn" aria-label="Login">Login</button>
                         </form>
-                        <div id="loginAlert" class="alert"></div>
+                        <div id="loginAlert" class="alert" data-testid="login-alert" role="alert" aria-live="polite"></div>
                     </div>
 
                     <!-- Registration Form -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="registration-form-card">
                         <h3>Registration Form</h3>
-                        <form id="registrationForm">
+                        <form id="registrationForm" data-testid="registration-form" novalidate>
                             <div class="form-group">
-                                <label for="firstName">First Name:</label>
-                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                                <label for="firstName">First Name: <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required
+                                    data-testid="firstname-input" aria-label="First Name" aria-required="true">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control"
+                                    placeholder="Enter last name"
+                                    data-testid="lastname-input" aria-label="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email: <span style="color:#ef4444">*</span></label>
+                                <input type="email" id="email" name="email" class="form-control" required
+                                    data-testid="email-input" aria-label="Email Address" aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" id="phone" name="phone" class="form-control"
+                                    placeholder="+1 (555) 000-0000"
+                                    data-testid="phone-input" aria-label="Phone Number">
                             </div>
                             <div class="form-group">
                                 <label for="country">Country:</label>
-                                <select id="country" name="country" class="form-control">
+                                <select id="country" name="country" class="form-control"
+                                    data-testid="country-select" aria-label="Select Country">
                                     <option value="">Select Country</option>
                                     <option value="us">United States</option>
                                     <option value="uk">United Kingdom</option>
                                     <option value="ca">Canada</option>
                                     <option value="au">Australia</option>
                                     <option value="in">India</option>
+                                    <option value="de">Germany</option>
+                                    <option value="fr">France</option>
+                                    <option value="jp">Japan</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Gender:</label>
-                                <div class="radio-group">
+                                <div class="radio-group" role="radiogroup" aria-label="Gender">
                                     <div class="radio-item">
-                                        <input type="radio" id="male" name="gender" value="male">
+                                        <input type="radio" id="male" name="gender" value="male" data-testid="gender-male">
                                         <label for="male">Male</label>
                                     </div>
                                     <div class="radio-item">
-                                        <input type="radio" id="female" name="gender" value="female">
+                                        <input type="radio" id="female" name="gender" value="female" data-testid="gender-female">
                                         <label for="female">Female</label>
                                     </div>
                                     <div class="radio-item">
-                                        <input type="radio" id="other" name="gender" value="other">
+                                        <input type="radio" id="other" name="gender" value="other" data-testid="gender-other">
                                         <label for="other">Other</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="interests">Interests:</label>
-                                <div class="checkbox-group">
+                                <label>Interests:</label>
+                                <div class="checkbox-group" role="group" aria-label="Interests">
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="coding" name="interests" value="coding">
+                                        <input type="checkbox" id="coding" name="interests" value="coding" data-testid="interest-coding">
                                         <label for="coding">Coding</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="testing" name="interests" value="testing">
+                                        <input type="checkbox" id="testing" name="interests" value="testing" data-testid="interest-testing">
                                         <label for="testing">Testing</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="design" name="interests" value="design">
+                                        <input type="checkbox" id="design" name="interests" value="design" data-testid="interest-design">
                                         <label for="design">Design</label>
                                     </div>
                                 </div>
@@ -133,147 +159,158 @@
                             <div class="form-group">
                                 <label for="bio">Bio:</label>
                                 <textarea id="bio" name="bio" class="form-control" rows="3"
-                                    placeholder="Tell us about yourself"></textarea>
+                                    placeholder="Tell us about yourself"
+                                    data-testid="bio-textarea" aria-label="Bio"></textarea>
                             </div>
-                            <button type="submit" class="btn">Register</button>
+                            <button type="submit" class="btn" data-testid="register-submit-btn">Register</button>
                         </form>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Elements Section -->
+        <!-- ===== INTERACTIVE ELEMENTS ===== -->
         <section id="elements" class="section">
             <div class="container">
-                <h2>🎯 Interactive Elements & Controls</h2>
-
+                <h2>🎯 Interactive Elements &amp; Controls</h2>
                 <div class="test-grid">
+
                     <!-- Button Interactions -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="button-interactions-card">
                         <h3>Button Interactions</h3>
-                        <button id="clickBtn" class="btn">Click Me</button>
-                        <button id="doubleClickBtn" class="btn btn-secondary">Double Click</button>
-                        <button id="rightClickBtn" class="btn btn-danger">Right Click</button>
-                        <button id="disabledBtn" class="btn" disabled>Disabled Button</button>
-                        <button id="toggleBtn" class="btn">Enable/Disable</button>
-                        <div id="buttonAlert" class="alert"></div>
+                        <button id="clickBtn" class="btn" data-testid="click-btn" aria-label="Single Click Button">Click Me</button>
+                        <button id="doubleClickBtn" class="btn btn-secondary" data-testid="double-click-btn" aria-label="Double Click Button">Double Click</button>
+                        <button id="rightClickBtn" class="btn btn-danger" data-testid="right-click-btn" aria-label="Right Click Button">Right Click</button>
+                        <button id="disabledBtn" class="btn" disabled
+                            data-testid="disabled-btn"
+                            aria-label="Disabled Button"
+                            aria-disabled="true"
+                            title="This button is currently disabled">Disabled Button</button>
+                        <button id="toggleBtn" class="btn" data-testid="toggle-enable-btn" aria-label="Toggle button enabled state">Enable/Disable</button>
+                        <div id="buttonAlert" class="alert" data-testid="button-alert" role="alert" aria-live="polite"></div>
                     </div>
 
                     <!-- Dynamic Content -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="dynamic-content-card">
                         <h3>Dynamic Content Loading</h3>
-                        <button id="loadContentBtn" class="btn">Load Content</button>
-                        <button id="hideContentBtn" class="btn btn-secondary">Hide Content</button>
-                        <div id="dynamicContent"
+                        <button id="loadContentBtn" class="btn" data-testid="load-content-btn">Load Content</button>
+                        <button id="hideContentBtn" class="btn btn-secondary" data-testid="hide-content-btn">Hide Content</button>
+                        <div id="dynamicContent" data-testid="dynamic-content"
                             style="display: none; margin-top: 1rem; padding: 1rem; background: #e8f0fe; border-radius: 8px;">
                             <p>This content was loaded dynamically!</p>
-                            <p id="timestamp"></p>
+                            <p id="timestamp" data-testid="load-timestamp"></p>
                         </div>
-                        <div id="loadingSpinner" class="loading" style="display: none;"></div>
+                        <div id="loadingSpinner" class="loading" data-testid="loading-spinner" style="display: none;"></div>
                     </div>
 
                     <!-- Alerts and Popups -->
-                    <div class="test-item">
-                        <h3>Alerts & Popups</h3>
-                        <button id="alertBtn" class="btn">Show Alert</button>
-                        <button id="confirmBtn" class="btn btn-secondary">Show Confirm</button>
-                        <button id="promptBtn" class="btn btn-danger">Show Prompt</button>
-                        <button id="modalBtn" class="btn">Show Modal</button>
-                        <div id="alertResult" style="margin-top: 1rem;"></div>
+                    <div class="test-item" data-testid="alerts-card">
+                        <h3>Alerts &amp; Popups</h3>
+                        <button id="alertBtn" class="btn" data-testid="alert-btn">Show Alert</button>
+                        <button id="confirmBtn" class="btn btn-secondary" data-testid="confirm-btn">Show Confirm</button>
+                        <button id="promptBtn" class="btn btn-danger" data-testid="prompt-btn">Show Prompt</button>
+                        <button id="modalBtn" class="btn" data-testid="modal-btn">Show Modal</button>
+                        <div id="alertResult" data-testid="alert-result" style="margin-top: 1rem;" role="status" aria-live="polite"></div>
                     </div>
-                    <div class="test-item">
+
+                    <!-- Autocomplete -->
+                    <div class="test-item" data-testid="autocomplete-card">
                         <h3>Autocomplete Input</h3>
                         <div class="autocomplete-container">
-                            <input type="text" id="autocompleteInput" class="form-control" 
-                                   placeholder="Start typing to search..." autocomplete="off">
-                            <div id="autocompleteList" class="autocomplete-list"></div>
+                            <input type="text" id="autocompleteInput" class="form-control"
+                                placeholder="Start typing to search..." autocomplete="off"
+                                data-testid="autocomplete-input"
+                                aria-label="Technology Search"
+                                aria-autocomplete="list"
+                                aria-haspopup="listbox">
+                            <div id="autocompleteList" class="autocomplete-list" data-testid="autocomplete-list" role="listbox"></div>
                         </div>
-                        <div id="selectedValue" style="margin-top: 1rem; padding: 0.5rem; background: #e8f0fe; border-radius: 4px; display: none;">
-                            <strong>Selected:</strong> <span id="selectedText"></span>
+                        <div id="selectedValue" data-testid="autocomplete-selected"
+                            style="margin-top: 1rem; padding: 0.5rem; background: #e8f0fe; border-radius: 4px; display: none;">
+                            <strong>Selected:</strong> <span id="selectedText" data-testid="selected-text"></span>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Data Table -->
-                <div class="test-item" style="margin-top: 2rem;">
+                <div class="test-item" data-testid="data-table-card" style="margin-top: 2rem;">
                     <h3>Dynamic Data Table</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <button id="addRowBtn" class="btn">Add Row</button>
-                        <button id="deleteRowBtn" class="btn btn-danger">Delete Selected</button>
+                    <div style="margin-bottom: 1rem; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+                        <button id="addRowBtn" class="btn" data-testid="add-row-btn">Add Row</button>
+                        <button id="deleteRowBtn" class="btn btn-danger" data-testid="delete-row-btn">Delete Selected</button>
                         <input type="text" id="searchInput" class="form-control" placeholder="Search table..."
-                            style="width: 200px; display: inline-block; margin-left: 1rem;">
+                            data-testid="table-search-input"
+                            aria-label="Search Table"
+                            style="width: 200px; display: inline-block;">
                     </div>
                     <div class="table-container">
-                        <table class="data-table" id="dataTable">
+                        <table class="data-table" id="dataTable" data-testid="user-table" aria-label="User Data Table">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox" id="selectAll"></th>
-                                    <th data-sort="name">Name ↕</th>
-                                    <th data-sort="email">Email ↕</th>
-                                    <th data-sort="role">Role ↕</th>
-                                    <th data-sort="status">Status ↕</th>
-                                    <th>Actions</th>
+                                    <th><input type="checkbox" id="selectAll" data-testid="select-all-checkbox" aria-label="Select All Rows"></th>
+                                    <th data-sort="name" data-testid="col-name" scope="col">Name ↕</th>
+                                    <th data-sort="email" data-testid="col-email" scope="col">Email ↕</th>
+                                    <th data-sort="role" data-testid="col-role" scope="col">Role ↕</th>
+                                    <th data-sort="status" data-testid="col-status" scope="col">Status ↕</th>
+                                    <th data-testid="col-actions" scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableBody">
-                                <tr>
-                                    <td><input type="checkbox" class="row-select"></td>
-                                    <td>Priya Sharma</td>
-                                    <td>priya.sharma@example.com</td>
-                                    <td>Admin</td>
-                                    <td><span class="status active">Active</span></td>
+                            <tbody id="tableBody" data-testid="table-body">
+                                <tr data-testid="user-row-1">
+                                    <td><input type="checkbox" class="row-select" data-testid="row-checkbox-1" aria-label="Select Priya Sharma"></td>
+                                    <td data-testid="user-name-1">Priya Sharma</td>
+                                    <td data-testid="user-email-1">priya.sharma@example.com</td>
+                                    <td data-testid="user-role-1">Admin</td>
+                                    <td><span class="status active" data-testid="user-status-1">Active</span></td>
                                     <td>
-                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
-                                        <button class="btn btn-danger delete-btn"
-                                            style="padding: 5px 10px;">Delete</button>
+                                        <button class="btn edit-btn" data-testid="edit-btn-1" style="padding: 5px 10px;" aria-label="Edit Priya Sharma">Edit</button>
+                                        <button class="btn btn-danger delete-btn" data-testid="delete-btn-1" style="padding: 5px 10px;" aria-label="Delete Priya Sharma">Delete</button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="row-select"></td>
-                                    <td>Rajesh Kumar</td>
-                                    <td>rajesh.kumar@example.com</td>
-                                    <td>User</td>
-                                    <td><span class="status active">Active</span></td>
+                                <tr data-testid="user-row-2">
+                                    <td><input type="checkbox" class="row-select" data-testid="row-checkbox-2" aria-label="Select Rajesh Kumar"></td>
+                                    <td data-testid="user-name-2">Rajesh Kumar</td>
+                                    <td data-testid="user-email-2">rajesh.kumar@example.com</td>
+                                    <td data-testid="user-role-2">User</td>
+                                    <td><span class="status active" data-testid="user-status-2">Active</span></td>
                                     <td>
-                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
-                                        <button class="btn btn-danger delete-btn"
-                                            style="padding: 5px 10px;">Delete</button>
+                                        <button class="btn edit-btn" data-testid="edit-btn-2" style="padding: 5px 10px;" aria-label="Edit Rajesh Kumar">Edit</button>
+                                        <button class="btn btn-danger delete-btn" data-testid="delete-btn-2" style="padding: 5px 10px;" aria-label="Delete Rajesh Kumar">Delete</button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="row-select"></td>
-                                    <td>Anjali Patel</td>
-                                    <td>anjali.patel@example.com</td>
-                                    <td>Manager</td>
-                                    <td><span class="status inactive">Inactive</span></td>
+                                <tr data-testid="user-row-3">
+                                    <td><input type="checkbox" class="row-select" data-testid="row-checkbox-3" aria-label="Select Anjali Patel"></td>
+                                    <td data-testid="user-name-3">Anjali Patel</td>
+                                    <td data-testid="user-email-3">anjali.patel@example.com</td>
+                                    <td data-testid="user-role-3">Manager</td>
+                                    <td><span class="status inactive" data-testid="user-status-3">Inactive</span></td>
                                     <td>
-                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
-                                        <button class="btn btn-danger delete-btn"
-                                            style="padding: 5px 10px;">Delete</button>
+                                        <button class="btn edit-btn" data-testid="edit-btn-3" style="padding: 5px 10px;" aria-label="Edit Anjali Patel">Edit</button>
+                                        <button class="btn btn-danger delete-btn" data-testid="delete-btn-3" style="padding: 5px 10px;" aria-label="Delete Anjali Patel">Delete</button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="row-select"></td>
-                                    <td>Arun Singh</td>
-                                    <td>arun.singh@example.com</td>
-                                    <td>User</td>
-                                    <td><span class="status active">Active</span></td>
+                                <tr data-testid="user-row-4">
+                                    <td><input type="checkbox" class="row-select" data-testid="row-checkbox-4" aria-label="Select Arun Singh"></td>
+                                    <td data-testid="user-name-4">Arun Singh</td>
+                                    <td data-testid="user-email-4">arun.singh@example.com</td>
+                                    <td data-testid="user-role-4">User</td>
+                                    <td><span class="status active" data-testid="user-status-4">Active</span></td>
                                     <td>
-                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
-                                        <button class="btn btn-danger delete-btn"
-                                            style="padding: 5px 10px;">Delete</button>
+                                        <button class="btn edit-btn" data-testid="edit-btn-4" style="padding: 5px 10px;" aria-label="Edit Arun Singh">Edit</button>
+                                        <button class="btn btn-danger delete-btn" data-testid="delete-btn-4" style="padding: 5px 10px;" aria-label="Delete Arun Singh">Delete</button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="row-select"></td>
-                                    <td>Meera Reddy</td>
-                                    <td>meera.reddy@example.com</td>
-                                    <td>Developer</td>
-                                    <td><span class="status active">Active</span></td>
+                                <tr data-testid="user-row-5">
+                                    <td><input type="checkbox" class="row-select" data-testid="row-checkbox-5" aria-label="Select Meera Reddy"></td>
+                                    <td data-testid="user-name-5">Meera Reddy</td>
+                                    <td data-testid="user-email-5">meera.reddy@example.com</td>
+                                    <td data-testid="user-role-5">Developer</td>
+                                    <td><span class="status active" data-testid="user-status-5">Active</span></td>
                                     <td>
-                                        <button class="btn edit-btn" style="padding: 5px 10px;">Edit</button>
-                                        <button class="btn btn-danger delete-btn"
-                                            style="padding: 5px 10px;">Delete</button>
+                                        <button class="btn edit-btn" data-testid="edit-btn-5" style="padding: 5px 10px;" aria-label="Edit Meera Reddy">Edit</button>
+                                        <button class="btn btn-danger delete-btn" data-testid="delete-btn-5" style="padding: 5px 10px;" aria-label="Delete Meera Reddy">Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -283,86 +320,510 @@
             </div>
         </section>
 
-        <!-- Drag and Drop Section -->
+        <!-- ===== DRAG & DROP / INTERACTIONS ===== -->
         <section id="interactions" class="section">
             <div class="container">
-                <h2>🎨 Drag & Drop and Advanced Interactions</h2>
+                <h2>🎨 Drag &amp; Drop and Advanced Interactions</h2>
 
-                <div class="test-item">
+                <div class="test-item" data-testid="drag-drop-card">
                     <h3>Drag and Drop Interface</h3>
                     <div class="drag-container">
-                        <div class="drag-source">
+                        <div class="drag-source" data-testid="drag-source-container">
                             <h4>Drag Items From Here</h4>
-                            <div class="draggable-item" draggable="true" data-value="item1">Item 1</div>
-                            <div class="draggable-item" draggable="true" data-value="item2">Item 2</div>
-                            <div class="draggable-item" draggable="true" data-value="item3">Item 3</div>
-                            <div class="draggable-item" draggable="true" data-value="item4">Item 4</div>
+                            <div class="draggable-item" draggable="true" data-value="item1" data-testid="drag-item-1" aria-label="Draggable Item 1">Item 1</div>
+                            <div class="draggable-item" draggable="true" data-value="item2" data-testid="drag-item-2" aria-label="Draggable Item 2">Item 2</div>
+                            <div class="draggable-item" draggable="true" data-value="item3" data-testid="drag-item-3" aria-label="Draggable Item 3">Item 3</div>
+                            <div class="draggable-item" draggable="true" data-value="item4" data-testid="drag-item-4" aria-label="Draggable Item 4">Item 4</div>
                         </div>
-                        <div class="drop-zone" id="dropZone">
+                        <div class="drop-zone" id="dropZone" data-testid="drop-zone" role="region" aria-label="Drop Zone">
                             <h4>Drop Items Here</h4>
-                            <div id="droppedItems"></div>
+                            <div id="droppedItems" data-testid="dropped-items-container"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="test-grid">
                     <!-- File Upload -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="file-upload-card">
                         <h3>File Upload</h3>
-                        <div class="file-upload" id="fileUpload">
+                        <div class="file-upload" id="fileUpload" data-testid="file-upload-area"
+                            role="button" aria-label="Click or drag files to upload" tabindex="0">
                             <p>📁 Click or drag files here to upload</p>
-                            <input type="file" id="fileInput" multiple style="display: none;">
+                            <input type="file" id="fileInput" multiple style="display: none;"
+                                data-testid="file-input" aria-label="File Input">
                         </div>
-                        <div id="fileList" style="margin-top: 1rem;"></div>
+                        <div id="fileList" data-testid="file-list" style="margin-top: 1rem;"></div>
                     </div>
 
-                    <!-- Slider and Range -->
-                    <div class="test-item">
-                        <h3>Sliders & Range Controls</h3>
+                    <!-- Sliders -->
+                    <div class="test-item" data-testid="sliders-card">
+                        <h3>Sliders &amp; Range Controls</h3>
                         <div class="form-group">
-                            <label for="volumeSlider">Volume: <span id="volumeValue">50</span></label>
-                            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="form-control">
+                            <label for="volumeSlider">Volume: <span id="volumeValue" data-testid="volume-value">50</span></label>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="form-control"
+                                data-testid="volume-slider" aria-label="Volume Slider"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                        </div>
+                        <div class="form-group">
+                            <label for="brightnessSlider">Brightness: <span id="brightnessValue" data-testid="brightness-value">70</span>%</label>
+                            <input type="range" id="brightnessSlider" min="0" max="100" value="70" class="form-control"
+                                data-testid="brightness-slider" aria-label="Brightness Slider"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
                         </div>
                         <div class="form-group">
                             <label for="dateInput">Date:</label>
-                            <input type="date" id="dateInput" class="form-control">
+                            <input type="date" id="dateInput" class="form-control"
+                                data-testid="date-input" aria-label="Date Picker">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeInput">Time:</label>
+                            <input type="time" id="timeInput" class="form-control"
+                                data-testid="time-input" aria-label="Time Picker">
                         </div>
                         <div class="form-group">
                             <label for="colorInput">Color:</label>
-                            <input type="color" id="colorInput" class="form-control" value="#667eea">
+                            <input type="color" id="colorInput" class="form-control" value="#667eea"
+                                data-testid="color-picker" aria-label="Color Picker">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Shadow DOM Section -->
+        <!-- ===== MODERN UI COMPONENTS ===== -->
+        <section id="modern" class="section">
+            <div class="container">
+                <h2>✨ Modern UI Components</h2>
+                <p style="color: #666; margin-bottom: 1.5rem;">Practice with modern UI patterns found in today's web applications.</p>
+
+                <div class="test-grid">
+
+                    <!-- Tabs -->
+                    <div class="test-item" data-testid="tabs-card">
+                        <h3>Tab Navigation</h3>
+                        <div class="tabs-container" data-testid="tabs-container">
+                            <div class="tab-list" role="tablist" data-testid="tab-list">
+                                <button class="tab-btn active" role="tab" aria-selected="true"
+                                    data-tab="profile" data-testid="tab-profile" aria-controls="tab-panel-profile">Profile</button>
+                                <button class="tab-btn" role="tab" aria-selected="false"
+                                    data-tab="settings" data-testid="tab-settings" aria-controls="tab-panel-settings">Settings</button>
+                                <button class="tab-btn" role="tab" aria-selected="false"
+                                    data-tab="activity" data-testid="tab-activity" aria-controls="tab-panel-activity">Activity</button>
+                                <button class="tab-btn" role="tab" aria-selected="false"
+                                    data-tab="billing" data-testid="tab-billing" aria-controls="tab-panel-billing">Billing</button>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-panel active" id="tab-panel-profile" role="tabpanel" data-testid="panel-profile">
+                                    <h4>User Profile</h4>
+                                    <p>Name: <strong data-testid="profile-name">John Doe</strong></p>
+                                    <p>Email: <strong data-testid="profile-email">john.doe@example.com</strong></p>
+                                    <p>Role: <strong data-testid="profile-role">Senior QA Engineer</strong></p>
+                                    <button class="btn" style="margin-top: 0.5rem;" data-testid="edit-profile-btn">Edit Profile</button>
+                                </div>
+                                <div class="tab-panel" id="tab-panel-settings" role="tabpanel" data-testid="panel-settings" style="display:none;">
+                                    <h4>Account Settings</h4>
+                                    <div class="form-group">
+                                        <label for="languageSelect">Language:</label>
+                                        <select id="languageSelect" class="form-control" data-testid="language-select" aria-label="Language Setting">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="timezoneSelect">Timezone:</label>
+                                        <select id="timezoneSelect" class="form-control" data-testid="timezone-select" aria-label="Timezone Setting">
+                                            <option>UTC</option>
+                                            <option>UTC+5:30 (IST)</option>
+                                            <option>UTC-5 (EST)</option>
+                                            <option>UTC+1 (CET)</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn" data-testid="save-settings-btn">Save Settings</button>
+                                </div>
+                                <div class="tab-panel" id="tab-panel-activity" role="tabpanel" data-testid="panel-activity" style="display:none;">
+                                    <h4>Recent Activity</h4>
+                                    <ul style="list-style: none; padding: 0;" data-testid="activity-list">
+                                        <li data-testid="activity-item-1" style="padding: 8px 0; border-bottom: 1px solid #eee;">✅ Logged in — 2 minutes ago</li>
+                                        <li data-testid="activity-item-2" style="padding: 8px 0; border-bottom: 1px solid #eee;">📝 Updated profile — 1 hour ago</li>
+                                        <li data-testid="activity-item-3" style="padding: 8px 0; border-bottom: 1px solid #eee;">🔐 Changed password — 2 days ago</li>
+                                        <li data-testid="activity-item-4" style="padding: 8px 0;">📧 Email verified — 5 days ago</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-panel" id="tab-panel-billing" role="tabpanel" data-testid="panel-billing" style="display:none;">
+                                    <h4>Billing Information</h4>
+                                    <p>Plan: <strong data-testid="billing-plan">Pro Plan</strong></p>
+                                    <p>Next billing: <strong data-testid="billing-date">May 1, 2026</strong></p>
+                                    <p>Amount: <strong data-testid="billing-amount">$29/month</strong></p>
+                                    <button class="btn btn-secondary" style="margin-top: 0.5rem;" data-testid="upgrade-plan-btn">Upgrade Plan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Switches -->
+                    <div class="test-item" data-testid="toggles-card">
+                        <h3>Toggle Switches</h3>
+                        <p class="hint-text">Sub-toggles are disabled until the Master Switch is turned ON.</p>
+                        <div class="toggle-group">
+                            <div class="toggle-item">
+                                <label class="toggle-label" for="masterToggle">Master Switch</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="masterToggle" data-testid="toggle-master" aria-label="Master Switch">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <label class="toggle-label" for="notificationsToggle">Email Notifications</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="notificationsToggle" data-testid="toggle-notifications" aria-label="Email Notifications Toggle" disabled aria-disabled="true">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <label class="toggle-label" for="darkModeToggle">Dark Mode</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="darkModeToggle" data-testid="toggle-dark-mode" aria-label="Dark Mode Toggle" disabled aria-disabled="true">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <label class="toggle-label" for="analyticsToggle">Analytics</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="analyticsToggle" data-testid="toggle-analytics" aria-label="Analytics Toggle" disabled aria-disabled="true">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="toggle-item">
+                                <label class="toggle-label" for="twoFactorToggle">Two-Factor Auth</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorToggle" data-testid="toggle-2fa" aria-label="Two-Factor Authentication Toggle" disabled aria-disabled="true">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="toggleStatus" data-testid="toggle-status" style="margin-top: 1rem; font-size: 0.9rem; color: #667eea;" aria-live="polite"></div>
+                    </div>
+
+                    <!-- OTP Input -->
+                    <div class="test-item" data-testid="otp-card">
+                        <h3>OTP / PIN Input</h3>
+                        <p class="hint-text">Enter the 6-digit verification code. <em>(Hint: 1 2 3 4 5 6)</em></p>
+                        <div class="otp-container" data-testid="otp-container" role="group" aria-label="6-digit OTP Input">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-1" aria-label="OTP digit 1" inputmode="numeric" pattern="[0-9]">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-2" aria-label="OTP digit 2" inputmode="numeric" pattern="[0-9]">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-3" aria-label="OTP digit 3" inputmode="numeric" pattern="[0-9]">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-4" aria-label="OTP digit 4" inputmode="numeric" pattern="[0-9]">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-5" aria-label="OTP digit 5" inputmode="numeric" pattern="[0-9]">
+                            <input type="text" class="otp-input" maxlength="1" data-testid="otp-6" aria-label="OTP digit 6" inputmode="numeric" pattern="[0-9]">
+                        </div>
+                        <div style="margin-top: 1rem; display: flex; gap: 8px;">
+                            <button class="btn" id="verifyOtpBtn" data-testid="verify-otp-btn">Verify Code</button>
+                            <button class="btn btn-secondary" id="clearOtpBtn" data-testid="clear-otp-btn">Clear</button>
+                        </div>
+                        <div id="otpResult" data-testid="otp-result" style="margin-top: 1rem;" role="alert" aria-live="polite"></div>
+                    </div>
+
+                    <!-- Toast Notifications -->
+                    <div class="test-item" data-testid="toast-card">
+                        <h3>Toast Notifications</h3>
+                        <p class="hint-text">Trigger different toast types. Each auto-dismisses after 4 seconds.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <button class="btn" id="toastSuccessBtn" data-testid="toast-success-btn">Success Toast</button>
+                            <button class="btn btn-danger" id="toastErrorBtn" data-testid="toast-error-btn">Error Toast</button>
+                            <button class="btn btn-secondary" id="toastWarningBtn" data-testid="toast-warning-btn">Warning Toast</button>
+                            <button class="btn" id="toastInfoBtn" data-testid="toast-info-btn" style="background: linear-gradient(45deg, #36d1dc, #5b86e5);">Info Toast</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Progress Bars -->
+                <div class="test-item" data-testid="progress-card" style="margin-top: 1.5rem;">
+                    <h3>Progress Bars &amp; Loading States</h3>
+                    <div class="test-grid" style="margin-top: 1rem;">
+                        <div>
+                            <label>Upload Progress: <span id="progressValue1" data-testid="progress-value-1">0</span>%</label>
+                            <div class="progress-bar-container" data-testid="progress-bar-1-container" style="margin: 6px 0 12px;">
+                                <div class="progress-bar" id="progressBar1" data-testid="progress-bar-1"
+                                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn" id="startProgressBtn" data-testid="start-progress-btn">Start Upload</button>
+                                <button class="btn btn-secondary" id="resetProgressBtn" data-testid="reset-progress-btn">Reset</button>
+                            </div>
+                            <div id="progressMsg" data-testid="progress-msg" style="margin-top: 8px; font-size: 0.9rem;" aria-live="polite"></div>
+                        </div>
+                        <div>
+                            <label>Task Completion:</label>
+                            <div style="margin-top: 0.75rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <span data-testid="task-label-design">Design</span>
+                                    <span data-testid="task-percent-design">85%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-success" data-testid="progress-design"
+                                        role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 10px 0 4px;">
+                                    <span data-testid="task-label-dev">Development</span>
+                                    <span data-testid="task-percent-dev">60%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-warning" data-testid="progress-dev"
+                                        role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 10px 0 4px;">
+                                    <span data-testid="task-label-testing">Testing</span>
+                                    <span data-testid="task-percent-testing">30%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-danger" data-testid="progress-testing"
+                                        role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multi-Step Checkout Form -->
+                <div class="test-item" data-testid="multistep-card" style="margin-top: 1.5rem;">
+                    <h3>Multi-Step Checkout Form</h3>
+                    <div class="step-indicator" data-testid="step-indicator" aria-label="Form Progress">
+                        <div class="step-item active" data-testid="step-dot-1">
+                            <div class="step-dot">1</div>
+                            <span class="step-label">Personal</span>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-item" data-testid="step-dot-2">
+                            <div class="step-dot">2</div>
+                            <span class="step-label">Address</span>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-item" data-testid="step-dot-3">
+                            <div class="step-dot">3</div>
+                            <span class="step-label">Payment</span>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step-item" data-testid="step-dot-4">
+                            <div class="step-dot">4</div>
+                            <span class="step-label">Review</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1 -->
+                    <div class="step-panel active" id="step-panel-1" data-testid="step-panel-1">
+                        <h4 data-testid="step-title-1">Step 1: Personal Information</h4>
+                        <div class="test-grid">
+                            <div class="form-group">
+                                <label for="ms-firstname">First Name <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="ms-firstname" class="form-control" data-testid="ms-firstname" aria-label="First Name" placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-lastname">Last Name <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="ms-lastname" class="form-control" data-testid="ms-lastname" aria-label="Last Name" placeholder="Enter last name">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-email">Email Address <span style="color:#ef4444">*</span></label>
+                                <input type="email" id="ms-email" class="form-control" data-testid="ms-email" aria-label="Email" placeholder="you@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-phone">Phone Number</label>
+                                <input type="tel" id="ms-phone" class="form-control" data-testid="ms-phone" aria-label="Phone" placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                        <div id="step1-error" class="alert alert-error" data-testid="step1-error" style="display:none;" role="alert"></div>
+                        <button class="btn" id="step1-next" data-testid="step1-next-btn" style="margin-top: 1rem;">Next: Address →</button>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-panel" id="step-panel-2" data-testid="step-panel-2" style="display:none;">
+                        <h4 data-testid="step-title-2">Step 2: Shipping Address</h4>
+                        <div class="form-group">
+                            <label for="ms-address">Street Address <span style="color:#ef4444">*</span></label>
+                            <input type="text" id="ms-address" class="form-control" data-testid="ms-address" aria-label="Street Address" placeholder="123 Main St">
+                        </div>
+                        <div class="test-grid">
+                            <div class="form-group">
+                                <label for="ms-city">City <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="ms-city" class="form-control" data-testid="ms-city" aria-label="City" placeholder="City">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-state">State / Province</label>
+                                <input type="text" id="ms-state" class="form-control" data-testid="ms-state" aria-label="State" placeholder="State">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-zip">ZIP / Postal Code <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="ms-zip" class="form-control" data-testid="ms-zip" aria-label="ZIP Code" placeholder="ZIP">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-country">Country <span style="color:#ef4444">*</span></label>
+                                <select id="ms-country" class="form-control" data-testid="ms-country-select" aria-label="Country">
+                                    <option value="">Select Country</option>
+                                    <option value="us">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="in">India</option>
+                                    <option value="au">Australia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="step2-error" class="alert alert-error" data-testid="step2-error" style="display:none;" role="alert"></div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <button class="btn btn-secondary" id="step2-back" data-testid="step2-back-btn">← Back</button>
+                            <button class="btn" id="step2-next" data-testid="step2-next-btn">Next: Payment →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-panel" id="step-panel-3" data-testid="step-panel-3" style="display:none;">
+                        <h4 data-testid="step-title-3">Step 3: Payment Details</h4>
+                        <div class="form-group">
+                            <label for="ms-cardname">Name on Card <span style="color:#ef4444">*</span></label>
+                            <input type="text" id="ms-cardname" class="form-control" data-testid="ms-cardname" aria-label="Card Name" placeholder="Full name as on card">
+                        </div>
+                        <div class="form-group">
+                            <label for="ms-cardnumber">Card Number <span style="color:#ef4444">*</span></label>
+                            <input type="text" id="ms-cardnumber" class="form-control" data-testid="ms-cardnumber" aria-label="Card Number" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="test-grid">
+                            <div class="form-group">
+                                <label for="ms-expiry">Expiry Date <span style="color:#ef4444">*</span></label>
+                                <input type="text" id="ms-expiry" class="form-control" data-testid="ms-expiry" aria-label="Expiry Date" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="ms-cvv">CVV <span style="color:#ef4444">*</span></label>
+                                <input type="password" id="ms-cvv" class="form-control" data-testid="ms-cvv" aria-label="CVV" placeholder="•••" maxlength="4">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Method:</label>
+                            <div class="radio-group" role="radiogroup" aria-label="Payment Method" data-testid="payment-method-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="pay-credit" name="paymentMethod" value="credit" data-testid="pay-credit" checked>
+                                    <label for="pay-credit">Credit Card</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="pay-debit" name="paymentMethod" value="debit" data-testid="pay-debit">
+                                    <label for="pay-debit">Debit Card</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="pay-paypal" name="paymentMethod" value="paypal" data-testid="pay-paypal">
+                                    <label for="pay-paypal">PayPal</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step3-error" class="alert alert-error" data-testid="step3-error" style="display:none;" role="alert"></div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <button class="btn btn-secondary" id="step3-back" data-testid="step3-back-btn">← Back</button>
+                            <button class="btn" id="step3-next" data-testid="step3-next-btn">Review Order →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-panel" id="step-panel-4" data-testid="step-panel-4" style="display:none;">
+                        <h4 data-testid="step-title-4">Step 4: Review Your Order</h4>
+                        <div class="order-summary" data-testid="order-summary">
+                            <div id="order-summary-content" data-testid="order-summary-content"></div>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 8px; margin-top: 1rem;">
+                            <input type="checkbox" id="ms-terms" data-testid="terms-checkbox" aria-label="Agree to Terms and Conditions">
+                            <label for="ms-terms">I agree to the <a href="#" style="color: #667eea;">Terms and Conditions</a></label>
+                        </div>
+                        <div id="step4-error" class="alert alert-error" data-testid="step4-error" style="display:none;" role="alert"></div>
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <button class="btn btn-secondary" id="step4-back" data-testid="step4-back-btn">← Back</button>
+                            <button class="btn" id="step4-submit" data-testid="submit-order-btn">Place Order ✓</button>
+                        </div>
+                    </div>
+
+                    <!-- Success -->
+                    <div class="step-panel" id="step-panel-success" data-testid="order-success-panel" style="display:none; text-align: center; padding: 2rem;">
+                        <div style="font-size: 3rem;">✅</div>
+                        <h4 data-testid="order-success-title" style="color: #22c55e; margin: 1rem 0;">Order Placed Successfully!</h4>
+                        <p>Order #<span id="orderNumber" data-testid="order-number">ORD-00000</span></p>
+                        <p style="color: #666; margin-top: 0.5rem;">A confirmation email has been sent to your registered address.</p>
+                        <button class="btn" id="startNewOrderBtn" data-testid="new-order-btn" style="margin-top: 1rem;">Place New Order</button>
+                    </div>
+                </div>
+
+                <!-- Accordion / FAQ -->
+                <div class="test-item" data-testid="accordion-card" style="margin-top: 1.5rem;">
+                    <h3>Accordion / FAQ</h3>
+                    <div class="accordion" data-testid="accordion-container">
+                        <div class="accordion-item" data-testid="accordion-item-1">
+                            <button class="accordion-header" data-testid="accordion-header-1" aria-expanded="false" aria-controls="accordion-body-1">
+                                <span>What is Playwright and how does it differ from Selenium?</span>
+                                <span class="accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <div class="accordion-body" id="accordion-body-1" data-testid="accordion-body-1" style="display:none;">
+                                <p>Playwright is a modern browser automation framework by Microsoft. Unlike Selenium, Playwright supports automatic waiting, network interception, multiple browser contexts, and has native support for Shadow DOM — all without extra plugins.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-testid="accordion-item-2">
+                            <button class="accordion-header" data-testid="accordion-header-2" aria-expanded="false" aria-controls="accordion-body-2">
+                                <span>What is a data-testid attribute and why should I use it?</span>
+                                <span class="accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <div class="accordion-body" id="accordion-body-2" data-testid="accordion-body-2" style="display:none;">
+                                <p>A <code>data-testid</code> is a custom HTML attribute used exclusively for testing. It decouples your test selectors from visual design and CSS classes, making tests more stable and less prone to breaking when the UI changes.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-testid="accordion-item-3">
+                            <button class="accordion-header" data-testid="accordion-header-3" aria-expanded="false" aria-controls="accordion-body-3">
+                                <span>How do I test elements inside a Shadow DOM?</span>
+                                <span class="accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <div class="accordion-body" id="accordion-body-3" data-testid="accordion-body-3" style="display:none;">
+                                <p>In Playwright, Shadow DOM is handled automatically — <code>page.locator()</code> pierces shadow roots by default. In Selenium, you need to use JavaScript executor to access <code>shadowRoot</code> and then query elements within it.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-testid="accordion-item-4">
+                            <button class="accordion-header" data-testid="accordion-header-4" aria-expanded="false" aria-controls="accordion-body-4">
+                                <span>What are the best locator strategies in Playwright?</span>
+                                <span class="accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <div class="accordion-body" id="accordion-body-4" data-testid="accordion-body-4" style="display:none;">
+                                <p>Priority order: 1) <code>getByRole()</code> — most accessible, 2) <code>getByTestId()</code> — most stable, 3) <code>getByLabel()</code> — for form inputs, 4) <code>getByText()</code> — for static content. Avoid CSS/XPath when possible.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-testid="accordion-item-5">
+                            <button class="accordion-header" data-testid="accordion-header-5" aria-expanded="false" aria-controls="accordion-body-5">
+                                <span>How do I handle dynamic content and async loading in tests?</span>
+                                <span class="accordion-icon" aria-hidden="true">+</span>
+                            </button>
+                            <div class="accordion-body" id="accordion-body-5" data-testid="accordion-body-5" style="display:none;">
+                                <p>Use Playwright's built-in auto-waiting: <code>await page.waitForSelector()</code>, <code>await expect(locator).toBeVisible()</code>, or <code>await page.waitForLoadState('networkidle')</code>. Avoid fixed sleeps — they make tests slow and flaky.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== SHADOW DOM ===== -->
         <section id="shadow-dom" class="section">
             <div class="container">
                 <h2>🌟 Shadow DOM Testing</h2>
-                <p>Practice accessing elements within Shadow DOM - a common challenge in modern web applications.</p>
-
+                <p>Practice accessing elements within Shadow DOM — a common challenge in modern web applications.</p>
                 <div class="test-grid">
-                    <!-- Simple Shadow DOM -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="simple-shadow-card">
                         <h3>Simple Shadow DOM</h3>
-                        <div id="simpleShadowHost" class="shadow-host">
+                        <div id="simpleShadowHost" class="shadow-host" data-testid="simple-shadow-host">
                             <p>This content is outside the shadow DOM</p>
                         </div>
                     </div>
-
-                    <!-- Nested Shadow DOM -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="nested-shadow-card">
                         <h3>Nested Shadow DOM</h3>
-                        <div id="nestedShadowHost" class="shadow-host">
+                        <div id="nestedShadowHost" class="shadow-host" data-testid="nested-shadow-host">
                             <p>This content is outside the nested shadow DOM</p>
                         </div>
                     </div>
-
-                    <!-- Shadow DOM with Form -->
-                    <div class="test-item">
+                    <div class="test-item" data-testid="shadow-form-card">
                         <h3>Shadow DOM Form</h3>
-                        <div id="shadowFormHost" class="shadow-host">
+                        <div id="shadowFormHost" class="shadow-host" data-testid="shadow-form-host">
                             <p>Shadow DOM form will be created here</p>
                         </div>
                     </div>
@@ -370,145 +831,356 @@
             </div>
         </section>
 
-        <!-- Advanced Testing Section -->
+        <!-- ===== ADVANCED ===== -->
         <section id="advanced" class="section">
             <div class="container">
                 <h2>🚀 Advanced Testing Scenarios</h2>
-
                 <div class="test-grid">
-                    <!-- Iframe Testing -->
-                    <div class="test-item">
+
+                    <!-- Iframe -->
+                    <div class="test-item" data-testid="iframe-card">
                         <h3>Iframe Interaction</h3>
                         <div class="iframe-container">
-                            <iframe id="testIframe"
-                                src="data:text/html,<html><body style='font-family: Arial; padding: 20px;'><h2>Iframe Content</h2><button onclick='alert(\"
-                                Hello from iframe!\")'>Click me in iframe</button><input type='text'
-                                    placeholder='Type in iframe'
-                                    style='padding: 10px; margin: 10px; border: 1px solid #ccc;'>
+                            <iframe id="testIframe" data-testid="test-iframe" title="Test Iframe"
+                                src="data:text/html,<html><body style='font-family:Arial;padding:20px;'><h2>Iframe Content</h2><button id='iframeBtn' onclick='alert(\"Hello from iframe!\")'>Click me in iframe</button><br><input type='text' id='iframeInput' placeholder='Type in iframe' style='padding:8px;margin-top:10px;border:1px solid #ccc;border-radius:4px;width:200px;'><p id='iframeText' style='color:#667eea;margin-top:10px;'>I am inside an iframe</p></body></html>"
+                                width="100%" height="200" style="border: none;"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Window Handling -->
+                    <div class="test-item" data-testid="window-handling-card">
+                        <h3>Window Handling</h3>
+                        <button id="openWindowBtn" class="btn" data-testid="open-window-btn">Open New Window</button>
+                        <button id="openTabBtn" class="btn btn-secondary" data-testid="open-tab-btn">Open New Tab</button>
+                        <div id="windowInfo" data-testid="window-info" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <!-- AJAX -->
+                    <div class="test-item" data-testid="ajax-card">
+                        <h3>AJAX &amp; Asynchronous Loading</h3>
+                        <button id="ajaxBtn" class="btn" data-testid="ajax-btn">Load Data via AJAX</button>
+                        <div id="ajaxResult" data-testid="ajax-result" style="margin-top: 1rem;"></div>
+                        <div id="ajaxLoading" class="loading" data-testid="ajax-loading" style="display: none;"></div>
+                    </div>
+
+                    <!-- Context Menu -->
+                    <div class="test-item" data-testid="context-menu-card">
+                        <h3>Context Menu</h3>
+                        <div id="contextArea" data-testid="context-area"
+                            style="background: #f0f8ff; padding: 2rem; border-radius: 8px; cursor: context-menu; user-select: none;"
+                            role="button" aria-label="Right-click area for context menu">
+                            Right-click here for custom context menu
+                        </div>
+                        <div id="contextMenu" data-testid="context-menu"
+                            style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 5px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;"
+                            role="menu">
+                            <div class="context-item" data-testid="context-copy" style="padding: 8px 16px; cursor: pointer;" role="menuitem">📋 Copy</div>
+                            <div class="context-item" data-testid="context-paste" style="padding: 8px 16px; cursor: pointer;" role="menuitem">📌 Paste</div>
+                            <div class="context-item" data-testid="context-delete" style="padding: 8px 16px; cursor: pointer; color: #ef4444;" role="menuitem">🗑️ Delete</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Infinite Scroll -->
+                <div class="test-item" data-testid="infinite-scroll-card" style="margin-top: 2rem;">
+                    <h3>Infinite Scroll</h3>
+                    <div id="scrollContainer" data-testid="scroll-container"
+                        style="height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 1rem;">
+                        <div id="scrollContent" data-testid="scroll-content"></div>
+                        <div id="scrollLoading" class="loading" data-testid="scroll-loading" style="display: none; text-align: center; margin: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TEST CASES ===== -->
+        <section id="test-cases" class="section">
+            <div class="container">
+                <h2>📋 Practice Test Cases</h2>
+                <p style="color: #666; margin-bottom: 1.5rem;">Real-world test scenarios written in plain English. Implement them using Playwright, Selenium, Cypress, or any automation tool of your choice.</p>
+
+                <div class="test-cases-grid" data-testid="test-cases-section">
+
+                    <div class="tc-category" data-testid="tc-login">
+                        <h3 class="tc-category-title">🔐 Login &amp; Authentication</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-1">Enter username "admin" and password "password", click Login, and verify the success message "Login successful!" appears.</li>
+                            <li data-testid="tc-2">Enter username "admin" and a wrong password, click Login, and verify the error says "Invalid password!"</li>
+                            <li data-testid="tc-3">Enter a wrong username with correct password "password", click Login, verify error says "Invalid username!"</li>
+                            <li data-testid="tc-4">Leave both fields empty and submit — verify a validation error appears.</li>
+                            <li data-testid="tc-5">Check the "Remember me" checkbox, verify it is checked, then uncheck it and verify it is unchecked.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-registration">
+                        <h3 class="tc-category-title">📝 Registration Form</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-6">Fill First Name "Alice", Last Name "Smith", Email "alice@test.com", select Country "India", check "Coding" and "Testing" interests, write a bio, and click Register.</li>
+                            <li data-testid="tc-7">Select "Male" radio button then select "Female" — verify only "Female" is selected.</li>
+                            <li data-testid="tc-8">Check all three interests (Coding, Testing, Design) and verify all three remain checked simultaneously.</li>
+                            <li data-testid="tc-9">Enter an invalid email like "notanemail" and try to submit — verify the browser shows a validation error.</li>
+                            <li data-testid="tc-10">Enter a phone number, click elsewhere, and verify the value persists in the phone field.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-table">
+                        <h3 class="tc-category-title">📊 Data Table Operations</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-11">Verify the table initially contains exactly 5 rows of user data.</li>
+                            <li data-testid="tc-12">Click "Add Row" and verify a new row is appended, making the total 6.</li>
+                            <li data-testid="tc-13">Type "Priya" in the search box and verify only Priya Sharma's row is visible.</li>
+                            <li data-testid="tc-14">Type "inactive" in the search box and verify only Anjali Patel's row appears.</li>
+                            <li data-testid="tc-15">Click the "Select All" header checkbox and verify all 5 row checkboxes become checked.</li>
+                            <li data-testid="tc-16">Select two rows, click "Delete Selected", confirm the dialog, and verify those rows are removed.</li>
+                            <li data-testid="tc-17">Click "Edit" on Rajesh Kumar, verify the modal shows his name pre-filled, change his role to "Manager", save, and verify the table updated.</li>
+                            <li data-testid="tc-18">Click "Delete" on Meera Reddy, click Cancel on the confirmation dialog, and verify she is still in the table.</li>
+                            <li data-testid="tc-19">Click the "Name" column header and verify rows are sorted alphabetically.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-dynamic">
+                        <h3 class="tc-category-title">⚡ Dynamic Content &amp; Waits</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-20">Click "Load Content" and verify a loading spinner appears, then disappears and the content block becomes visible with a timestamp.</li>
+                            <li data-testid="tc-21">After loading content, click "Hide Content" and verify the block is no longer visible.</li>
+                            <li data-testid="tc-22">Click "Load Data via AJAX", wait for the spinner to disappear, and verify a response with a Response ID is shown.</li>
+                            <li data-testid="tc-23">Scroll to the bottom of the Infinite Scroll container and verify new items are automatically appended.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-alerts">
+                        <h3 class="tc-category-title">💬 Alerts, Modals &amp; Dialogs</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-24">Click "Show Alert", accept the popup, and verify "Alert was shown" text appears on the page.</li>
+                            <li data-testid="tc-25">Click "Show Confirm" and accept — verify "Confirm result: Yes". Repeat and dismiss — verify "Confirm result: No".</li>
+                            <li data-testid="tc-26">Click "Show Prompt", type "Playwright", and verify "Prompt result: Playwright" appears.</li>
+                            <li data-testid="tc-27">Click "Show Modal", verify it opens with "Test Modal" heading, click the × button, and verify the modal closes.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-buttons">
+                        <h3 class="tc-category-title">🖱️ Button Interactions</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-28">Click "Click Me" once and verify "Button clicked!" message appears.</li>
+                            <li data-testid="tc-29">Double-click "Double Click" and verify "Button double-clicked!" appears.</li>
+                            <li data-testid="tc-30">Right-click the "Right Click" button and verify "Button right-clicked!" appears (not the browser context menu).</li>
+                            <li data-testid="tc-31">Verify "Disabled Button" appears grayed out and is not clickable. Click "Enable/Disable" to enable it — verify it looks active. Click again — verify it is disabled again.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-dnd">
+                        <h3 class="tc-category-title">🎨 Drag and Drop</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-32">Drag "Item 1" from the source area and drop it into the drop zone — verify it appears there.</li>
+                            <li data-testid="tc-33">Drag all four items into the drop zone one by one and verify all four are present.</li>
+                            <li data-testid="tc-34">While dragging an item over the drop zone, verify the drop zone shows a highlighted visual state.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-sliders">
+                        <h3 class="tc-category-title">🎚️ Sliders &amp; Date Pickers</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-35">Move the Volume slider to maximum and verify the displayed value shows "100".</li>
+                            <li data-testid="tc-36">Move the Volume slider to minimum and verify the displayed value shows "0".</li>
+                            <li data-testid="tc-37">Set the date picker to "2026-12-25" and verify the field shows the correct date.</li>
+                            <li data-testid="tc-38">Select a color with the color picker and verify the input value updates to the new hex code.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-autocomplete">
+                        <h3 class="tc-category-title">🔍 Autocomplete Search</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-39">Type "java" and verify the dropdown shows "JavaScript" and "Java".</li>
+                            <li data-testid="tc-40">Type "play", click "Playwright" in the suggestions, and verify the input is filled and "Selected: Playwright" shows below.</li>
+                            <li data-testid="tc-41">Type "xyz123" and verify the dropdown shows "No suggestions found".</li>
+                            <li data-testid="tc-42">Type "react", use the Down Arrow key to navigate to "React", press Enter, and verify it is selected.</li>
+                            <li data-testid="tc-43">While the dropdown is open, press Escape and verify it closes.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-tabs">
+                        <h3 class="tc-category-title">📑 Tab Navigation</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-44">Verify the "Profile" tab is active by default and shows Name, Email, Role.</li>
+                            <li data-testid="tc-45">Click "Settings" tab — verify Settings panel (with Language and Timezone dropdowns) is shown and Profile panel is hidden.</li>
+                            <li data-testid="tc-46">Click "Activity" tab and verify the Recent Activity list shows 4 items.</li>
+                            <li data-testid="tc-47">Click "Billing" tab, verify "Pro Plan" and "$29/month" are visible, and click "Upgrade Plan".</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-toggles">
+                        <h3 class="tc-category-title">🔄 Toggle Switches</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-48">Verify all four sub-toggles (Notifications, Dark Mode, Analytics, Two-Factor Auth) appear visually disabled and cannot be interacted with initially.</li>
+                            <li data-testid="tc-49">Turn ON the Master Switch and verify all four sub-toggles become enabled and interactive.</li>
+                            <li data-testid="tc-50">With Master Switch ON, toggle "Email Notifications" ON and verify the toggle shows the ON (colored) state.</li>
+                            <li data-testid="tc-51">Toggle "Dark Mode" ON and verify the page background and section colors change to a dark theme.</li>
+                            <li data-testid="tc-52">Turn OFF the Master Switch and verify all sub-toggles are disabled again.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-otp">
+                        <h3 class="tc-category-title">🔢 OTP / PIN Input</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-53">Type "1" in the first OTP box and verify focus automatically moves to the second box.</li>
+                            <li data-testid="tc-54">Fill all 6 OTP boxes (1–6), entering one digit at a time, and verify auto-focus advances after each digit.</li>
+                            <li data-testid="tc-55">Enter OTP "123456", click "Verify Code", and verify a success message appears.</li>
+                            <li data-testid="tc-56">Enter incorrect OTP "000000", click "Verify Code", and verify an error message appears.</li>
+                            <li data-testid="tc-57">Fill boxes partially, click "Clear", and verify all 6 boxes are empty and focus is on the first box.</li>
+                            <li data-testid="tc-58">Type a digit in OTP box 3, press Backspace — verify box 3 clears and focus moves back to box 2.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-toast">
+                        <h3 class="tc-category-title">🔔 Toast Notifications</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-59">Click "Success Toast" and verify a green toast notification appears at the top-right corner.</li>
+                            <li data-testid="tc-60">Click "Error Toast" and verify a red toast appears with an error message.</li>
+                            <li data-testid="tc-61">Click "Warning Toast" and verify an amber/yellow toast appears.</li>
+                            <li data-testid="tc-62">Verify a toast automatically disappears after ~4 seconds without user interaction.</li>
+                            <li data-testid="tc-63">Click the × button on an active toast and verify it dismisses immediately.</li>
+                            <li data-testid="tc-64">Trigger "Success Toast" and "Error Toast" in quick succession and verify both toasts are visible simultaneously, stacked vertically.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-progress">
+                        <h3 class="tc-category-title">📈 Progress Bars</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-65">Click "Start Upload" and verify the progress bar starts animating from 0% toward 100%.</li>
+                            <li data-testid="tc-66">Wait for the bar to reach 100% and verify the label shows "100" and a completion message appears.</li>
+                            <li data-testid="tc-67">Click "Reset" and verify the progress bar returns to 0% and the label shows "0".</li>
+                            <li data-testid="tc-68">Verify the static progress bars show approximate widths: Design ~85%, Development ~60%, Testing ~30%.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-multistep">
+                        <h3 class="tc-category-title">🛒 Multi-Step Checkout</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-69">Verify only Step 1 (Personal Information) is visible when the section loads.</li>
+                            <li data-testid="tc-70">Click "Next: Address" with empty fields and verify an error message about required fields appears.</li>
+                            <li data-testid="tc-71">Fill First Name "John", Last Name "Doe", Email "john@test.com", click Next, and verify Step 2 (Address) is now shown.</li>
+                            <li data-testid="tc-72">Click "Back" from Step 2 and verify Step 1 still shows "John", "Doe", and the email.</li>
+                            <li data-testid="tc-73">Complete Steps 1–3, reach Step 4, and verify the order summary shows the name and email from Step 1.</li>
+                            <li data-testid="tc-74">In Step 4, click "Place Order" without checking Terms — verify an error is shown.</li>
+                            <li data-testid="tc-75">Check Terms, click "Place Order", and verify the success screen shows an order number starting with "ORD-".</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-accordion">
+                        <h3 class="tc-category-title">🪗 Accordion</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-76">Verify all 5 accordion items are collapsed when the page loads.</li>
+                            <li data-testid="tc-77">Click the first accordion header and verify its body content expands and becomes visible.</li>
+                            <li data-testid="tc-78">Click an expanded accordion item again and verify it collapses.</li>
+                            <li data-testid="tc-79">Open accordion item 1, then click item 2 — verify item 2 opens and item 1 closes automatically.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-shadow">
+                        <h3 class="tc-category-title">🌟 Shadow DOM</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-80">Click "Shadow Button" inside the Simple Shadow DOM and verify the alert "Button inside Shadow DOM clicked!" appears.</li>
+                            <li data-testid="tc-81">Type text into the input inside the Simple Shadow DOM and verify the text is visible in that field.</li>
+                            <li data-testid="tc-82">Click "Nested Shadow Button" inside the Nested Shadow DOM and verify the correct alert appears.</li>
+                            <li data-testid="tc-83">Fill the Shadow DOM Form (name + email) and click "Submit Shadow Form" — verify the green success message appears inside the shadow DOM.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-iframe">
+                        <h3 class="tc-category-title">🖼️ Iframe &amp; Window Handling</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-84">Switch context to the iframe, click "Click me in iframe", handle the alert, and verify the action succeeded.</li>
+                            <li data-testid="tc-85">Switch to the iframe, type text into the iframe input field, and verify it appears there.</li>
+                            <li data-testid="tc-86">Click "Open New Window", switch to it, verify the heading "New Window" is present, click "Close Window", and switch back to the main page.</li>
+                            <li data-testid="tc-87">Click "Open New Tab", verify the browser opens a new tab, then close it and verify you are back on the main page.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tc-category" data-testid="tc-context">
+                        <h3 class="tc-category-title">🖱️ Context Menu</h3>
+                        <ol class="tc-list">
+                            <li data-testid="tc-88">Right-click the context area and verify the custom menu appears with options Copy, Paste, and Delete.</li>
+                            <li data-testid="tc-89">Open the context menu and click "Copy" — verify an alert confirms the "Copy" action was triggered.</li>
+                            <li data-testid="tc-90">Open the context menu then click anywhere else on the page — verify the context menu disappears.</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" data-testid="toast-container"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; min-width: 300px; pointer-events: none;"
+        aria-live="assertive" aria-atomic="false"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Panjatan Testing Platform</h3>
+                    <p>A comprehensive web testing and automation playground for developers and QA engineers.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#forms">Forms Testing</a></li>
+                        <li><a href="#elements">Interactive Elements</a></li>
+                        <li><a href="#modern">Modern UI</a></li>
+                        <li><a href="#advanced">Advanced Scenarios</a></li>
+                        <li><a href="#test-cases">Test Cases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Details</h4>
+                    <div class="contact-info">
+                        <p>📧 Email: panjatan.tech@gmail.com</p>
+                        <p>📱 Phone: +91 70304 00093</p>
+                        <p>🏠 Address: Pune, Maharashtra, India</p>
+                        <p>⏰ Support: Mon-Fri 9:00 AM - 6:00 PM IST</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Technical Info</h4>
+                    <div class="tech-info">
+                        <p>🔧 Built with: HTML5, CSS3, JavaScript</p>
+                        <p>🎯 Purpose: Playwright &amp; Selenium Testing</p>
+                        <p>📊 Version: 2.0.0</p>
+                        <p>🔧 Last Updated: April 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2026 Panjatan Testing Platform. All rights reserved.</p>
+                    </div>
+                    <div class="maintained-by">
+                        <p>Maintained by: <strong>Panjatan Development Team</strong></p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="testModal" class="modal" data-testid="test-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <span class="close" id="closeModal" data-testid="modal-close-btn" aria-label="Close Modal">&times;</span>
+            <h3 id="modal-title">Test Modal</h3>
+            <p>This is a modal dialog for testing purposes.</p>
+            <button class="btn" data-testid="modal-action-btn">Modal Button</button>
+        </div>
+    </div>
+
+    <script src="scriptm.js"></script>
 </body>
-
-</html>"
-width="100%" height="200" style="border: none;"></iframe>
-</div>
-</div>
-
-<!-- Multiple Windows -->
-<div class="test-item">
-    <h3>Window Handling</h3>
-    <button id="openWindowBtn" class="btn">Open New Window</button>
-    <button id="openTabBtn" class="btn btn-secondary">Open New Tab</button>
-    <div id="windowInfo" style="margin-top: 1rem;"></div>
-</div>
-
-<!-- AJAX Loading -->
-<div class="test-item">
-    <h3>AJAX & Asynchronous Loading</h3>
-    <button id="ajaxBtn" class="btn">Load Data via AJAX</button>
-    <div id="ajaxResult" style="margin-top: 1rem;"></div>
-    <div id="ajaxLoading" class="loading" style="display: none;"></div>
-</div>
-
-<!-- Context Menu -->
-<div class="test-item">
-    <h3>Context Menu</h3>
-    <div id="contextArea" style="background: #f0f8ff; padding: 2rem; border-radius: 8px; cursor: pointer;">
-        Right-click here for custom context menu
-    </div>
-    <div id="contextMenu"
-        style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;">
-        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Copy</div>
-        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Paste</div>
-        <div class="context-item" style="padding: 5px 10px; cursor: pointer;">Delete</div>
-    </div>
-</div>
-</div>
-
-<!-- Infinite Scroll -->
-<div class="test-item" style="margin-top: 2rem;">
-    <h3>Infinite Scroll</h3>
-    <div id="scrollContainer"
-        style="height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 1rem;">
-        <div id="scrollContent">
-            <!-- Content will be dynamically added -->
-        </div>
-        <div id="scrollLoading" class="loading" style="display: none; text-align: center; margin: 1rem;"></div>
-    </div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <!-- Company Information -->
-            <div class="footer-section">
-                <h3>Panjatan Testing Platform</h3>
-                <p>A comprehensive web testing and automation playground for developers and QA engineers.</p>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#forms">Forms Testing</a></li>
-                    <li><a href="#elements">Interactive Elements</a></li>
-                    <li><a href="#advanced">Advanced Scenarios</a></li>
-                    <li><a href="#tables">Data Tables</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Information -->
-            <div class="footer-section">
-                <h4>Contact Details</h4>
-                <div class="contact-info">
-                    <p>📧 Email: panjatan.tech@gmail.com</p>
-                    <p>📱 Phone: +91 70304 00093</p>
-                    <p>🏠Address: Pune, Maharashtra, India</p>
-                    <p>⏰ Support: Mon-Fri 9:00 AM - 6:00 PM IST</p>
-                </div>
-            </div>
-
-            <!-- Technical Information -->
-            <div class="footer-section">
-                <h4>Technical Info</h4>
-                <div class="tech-info">
-                    <p>🔧 Built with: HTML5, CSS3, JavaScript</p>
-                    <p>🎯 Purpose: Web Testing & Automation</p>
-                    <p>📊 Version: 1.0.0</p>
-                    <p>🔧 Last Updated: August 2025</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Footer -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <div class="copyright">
-                    <p>&copy; 2025 Panjatan Testing Platform. All rights reserved.</p>
-                </div>
-                <div class="maintained-by">
-                    <p>Maintained by: <strong>Panjatan Development Team</strong></p>
-                </div>
-                <div class="footer-legal">
-                    <a href="#" class="legal-link">Privacy Policy</a>
-                    <a href="#" class="legal-link">Terms of Service</a>
-                    <a href="#" class="legal-link">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- Modal -->
-<div id="testModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h3>Test Modal</h3>
-        <p>This is a modal dialog for testing purposes.</p>
-        <button class="btn">Modal Button</button>
-    </div>
-</div>
-<script src="scriptm.js"></script>
-</body>
-
 </html>
