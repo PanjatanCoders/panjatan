@@ -3,40 +3,32 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Only one deployment runs at a time; in-progress deploy is NOT cancelled
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  contents: write
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          # Deploy the entire repo root (all HTML/CSS/JS files)
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          exclude_assets: >-
+            .github,
+            node_modules,
+            package.json,
+            package-lock.json,
+            .eslintrc.json,
+            .htmlvalidate.json,
+            .hintrc,
+            .gitignore,
+            LICENSE
