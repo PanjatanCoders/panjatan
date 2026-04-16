@@ -1,0 +1,73 @@
+name: CI — Validate & Lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  # ─── Job 1: Validate HTML ─────────────────────────────────────────────────
+  validate-html:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate HTML files
+        run: npm run lint:html
+
+  # ─── Job 2: Lint JavaScript ───────────────────────────────────────────────
+  lint-js:
+    name: Lint JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint JavaScript files
+        run: npm run lint:js
+
+  # ─── Job 3: Check for broken links ───────────────────────────────────────
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check links in HTML
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --exclude 'https://fonts.googleapis.com'
+            --exclude 'https://cdn.tailwindcss.com'
+            --exclude 'about:blank'
+            --exclude 'data:'
+            --exclude '#'
+            --timeout 20
+            --no-progress
+            '**/*.html'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
