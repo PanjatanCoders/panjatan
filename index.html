@@ -842,7 +842,7 @@
                         <h3>Iframe Interaction</h3>
                         <div class="iframe-container">
                             <iframe id="testIframe" data-testid="test-iframe" title="Test Iframe"
-                                src="data:text/html,<html><body style='font-family:Arial;padding:20px;'><h2>Iframe Content</h2><button id='iframeBtn' onclick='alert(\"Hello from iframe!\")'>Click me in iframe</button><br><input type='text' id='iframeInput' placeholder='Type in iframe' style='padding:8px;margin-top:10px;border:1px solid #ccc;border-radius:4px;width:200px;'><p id='iframeText' style='color:#667eea;margin-top:10px;'>I am inside an iframe</p></body></html>"
+                                srcdoc="<html><body style='font-family:Arial;padding:20px'><h2>Iframe Content</h2><button id='iframeBtn' onclick='alert(&quot;Hello from iframe!&quot;)'>Click me in iframe</button><br><input type='text' id='iframeInput' placeholder='Type in iframe' style='padding:8px;margin-top:10px;border:1px solid #ccc;border-radius:4px;width:200px'><p id='iframeText' style='color:#667eea;margin-top:10px'>I am inside an iframe</p></body></html>"
                                 width="100%" height="200" style="border: none;"></iframe>
                         </div>
                     </div>
