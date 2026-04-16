@@ -9,6 +9,8 @@
     "prefer-native-element": "off",
     "no-implicit-close": "off",
     "no-implicit-button-type": "off",
+    "no-redundant-aria-label": "off",
+    "form-dup-name": "off",
     "wcag/h30": "off",
     "wcag/h32": "off",
     "wcag/h37": "off",
