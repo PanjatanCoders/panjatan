@@ -330,10 +330,10 @@
                     <div class="drag-container">
                         <div class="drag-source" data-testid="drag-source-container">
                             <h4>Drag Items From Here</h4>
-                            <div class="draggable-item" draggable="true" data-value="item1" data-testid="drag-item-1" aria-label="Draggable Item 1">Item 1</div>
-                            <div class="draggable-item" draggable="true" data-value="item2" data-testid="drag-item-2" aria-label="Draggable Item 2">Item 2</div>
-                            <div class="draggable-item" draggable="true" data-value="item3" data-testid="drag-item-3" aria-label="Draggable Item 3">Item 3</div>
-                            <div class="draggable-item" draggable="true" data-value="item4" data-testid="drag-item-4" aria-label="Draggable Item 4">Item 4</div>
+                            <div class="draggable-item" draggable="true" role="button" data-value="item1" data-testid="drag-item-1" aria-label="Draggable Item 1">Item 1</div>
+                            <div class="draggable-item" draggable="true" role="button" data-value="item2" data-testid="drag-item-2" aria-label="Draggable Item 2">Item 2</div>
+                            <div class="draggable-item" draggable="true" role="button" data-value="item3" data-testid="drag-item-3" aria-label="Draggable Item 3">Item 3</div>
+                            <div class="draggable-item" draggable="true" role="button" data-value="item4" data-testid="drag-item-4" aria-label="Draggable Item 4">Item 4</div>
                         </div>
                         <div class="drop-zone" id="dropZone" data-testid="drop-zone" role="region" aria-label="Drop Zone">
                             <h4>Drop Items Here</h4>
@@ -590,7 +590,7 @@
                 <!-- Multi-Step Checkout Form -->
                 <div class="test-item" data-testid="multistep-card" style="margin-top: 1.5rem;">
                     <h3>Multi-Step Checkout Form</h3>
-                    <div class="step-indicator" data-testid="step-indicator" aria-label="Form Progress">
+                    <div class="step-indicator" role="group" data-testid="step-indicator" aria-label="Form Progress">
                         <div class="step-item active" data-testid="step-dot-1">
                             <div class="step-dot">1</div>
                             <span class="step-label">Personal</span>
@@ -1174,7 +1174,7 @@
     <!-- Modal -->
     <div id="testModal" class="modal" data-testid="test-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <span class="close" id="closeModal" data-testid="modal-close-btn" aria-label="Close Modal">&times;</span>
+            <button class="close" id="closeModal" data-testid="modal-close-btn" aria-label="Close Modal">&times;</button>
             <h3 id="modal-title">Test Modal</h3>
             <p>This is a modal dialog for testing purposes.</p>
             <button class="btn" data-testid="modal-action-btn">Modal Button</button>
