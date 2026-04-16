@@ -8,6 +8,7 @@
     "void-style": "off",
     "prefer-native-element": "off",
     "no-implicit-close": "off",
+    "no-implicit-button-type": "off",
     "wcag/h30": "off",
     "wcag/h32": "off",
     "wcag/h37": "off",
